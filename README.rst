@@ -2,28 +2,28 @@
 Django Sponsoring
 =============================
 
-.. image:: https://badge.fury.io/py/django-sponsoring.svg
-    :target: https://badge.fury.io/py/django-sponsoring
+.. image:: https://badge.fury.io/py/dj-sponsoring.svg
+    :target: https://badge.fury.io/py/dj-sponsoring
 
-.. image:: https://travis-ci.org/hbuyse/django-sponsoring.svg?branch=master
-    :target: https://travis-ci.org/hbuyse/django-sponsoring
+.. image:: https://travis-ci.org/hbuyse/dj-sponsoring.svg?branch=master
+    :target: https://travis-ci.org/hbuyse/dj-sponsoring
 
-.. image:: https://codecov.io/gh/hbuyse/django-sponsoring/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/hbuyse/django-sponsoring
+.. image:: https://codecov.io/gh/hbuyse/dj-sponsoring/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/hbuyse/dj-sponsoring
 
 Sponsors pages for django
 
 Documentation
 -------------
 
-The full documentation is at https://django-sponsoring.readthedocs.io.
+The full documentation is at https://dj-sponsoring.readthedocs.io.
 
 Quickstart
 ----------
 
 Install Django Sponsoring::
 
-    pip install django-sponsoring
+    pip install dj-sponsoring
 
 Add it to your `INSTALLED_APPS`:
 
@@ -31,7 +31,7 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'django_sponsoring.apps.DjangoSponsoringConfig',
+        'dj_sponsoring.apps.DjangoSponsoringConfig',
         ...
     )
 
@@ -39,12 +39,12 @@ Add Django Sponsoring's URL patterns:
 
 .. code-block:: python
 
-    from django_sponsoring import urls as django_sponsoring_urls
+    from dj_sponsoring import urls as dj_sponsoring_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(django_sponsoring_urls)),
+        url(r'^', include(dj_sponsoring_urls)),
         ...
     ]
 

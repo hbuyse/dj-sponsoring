@@ -23,7 +23,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
 }
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_sponsoring',
+    'dj_sponsoring',
 
     # if your app has other dependencies that need to be added to the site
     # they should be added here

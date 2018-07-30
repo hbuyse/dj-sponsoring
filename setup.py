@@ -11,7 +11,7 @@ except ImportError:
 
 
 def get_version(*file_paths):
-    """Retrieves the version from django_sponsoring/__init__.py"""
+    """Retrieves the version from dj_sponsoring/__init__.py"""
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("django_sponsoring", "__init__.py")
+version = get_version("dj_sponsoring", "__init__.py")
 
 
 if sys.argv[-1] == 'publish':
@@ -45,21 +45,21 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='django-sponsoring',
+    name='dj-sponsoring',
     version=version,
     description="""Sponsors pages for django""",
     long_description=readme + '\n\n' + history,
     author='Henri Buyse',
     author_email='henri.buyse@gmail.com',
-    url='https://github.com/hbuyse/django-sponsoring',
+    url='https://github.com/hbuyse/dj-sponsoring',
     packages=[
-        'django_sponsoring',
+        'dj_sponsoring',
     ],
     include_package_data=True,
     install_requires=["django-model-utils>=2.0",],
     license="MIT",
     zip_safe=False,
-    keywords='django-sponsoring',
+    keywords='dj-sponsoring',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Django :: 2.0',

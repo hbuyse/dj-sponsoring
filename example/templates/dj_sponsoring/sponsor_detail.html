@@ -1,0 +1,27 @@
+{% extends "dj_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>{{ sponsor }}</h1>
+
+  <div class="btn-group" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-update' sponsor.id %}" class="btn btn-secondary btn-sm">Update</a>
+    <a href="{% url 'dj-sponsoring:sponsor-delete' sponsor.id %}" class="btn btn-secondary btn-sm">Delete</a>
+    <a href="{% url 'dj-sponsoring:sponsor-image-create' %}" class="btn btn-secondary btn-sm">Add image</a>
+    <a href="{% url 'dj-sponsoring:sponsor-file-create' %}" class="btn btn-secondary btn-sm">Add document</a>
+  </div>
+
+  {% if sponsor.logo %}
+    <div class="col-3 float-left">
+      <img class="d-block w-100" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
+    </div>
+    <div class="col-9 float-right">
+      <p>{{ sponsor.summary }}</p>
+      <p>{{ sponsor.description_md|safe }}</p>
+    <div>
+  {% else %}
+    <p>{{ sponsor.summary }}</p>
+    <p>{{ sponsor.description_md|safe }}</p>
+  {% endif %}
+
+{% endblock %}

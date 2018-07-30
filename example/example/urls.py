@@ -20,6 +20,6 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('django_sponsoring.urls', namespace='dj-sponsoring')),
+    path('', include('dj_sponsoring.urls', namespace='dj-sponsoring')),
     path('markdownx/', include('markdownx.urls')),
 ]

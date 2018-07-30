@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sites",
-    "django_sponsoring",
+    "dj_sponsoring",
 ]
 
 SITE_ID = 1

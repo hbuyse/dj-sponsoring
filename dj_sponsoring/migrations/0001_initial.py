@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import django_sponsoring.models
+import dj_sponsoring.models
 import markdownx.models
 
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=128, verbose_name='Sponsor name')),
                 ('summary', models.CharField(max_length=512, verbose_name='Sponsor summary')),
                 ('description', markdownx.models.MarkdownxField(verbose_name='Sponsor description')),
-                ('logo', models.ImageField(upload_to=django_sponsoring.models.sponsors_logo_upload_to)),
+                ('logo', models.ImageField(upload_to=dj_sponsoring.models.sponsors_logo_upload_to)),
                 ('url', models.URLField(verbose_name='Sponsor url')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Sponsor creation date')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='Sponsor last modification date')),
@@ -36,11 +36,11 @@ class Migration(migrations.Migration):
             name='SponsorFile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.FileField(upload_to=django_sponsoring.models.sponsors_file_upload_to, verbose_name='Sponsor file')),
+                ('file', models.FileField(upload_to=dj_sponsoring.models.sponsors_file_upload_to, verbose_name='Sponsor file')),
                 ('description', models.CharField(max_length=128, verbose_name='Sponsor file description')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Sponsor file creation date')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='Sponsor file last modification date')),
-                ('sponsor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='django_sponsoring.Sponsor')),
+                ('sponsor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dj_sponsoring.Sponsor')),
             ],
             options={
                 'verbose_name': 'Sponsor file',
@@ -52,12 +52,12 @@ class Migration(migrations.Migration):
             name='SponsorImage',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('img', models.ImageField(upload_to=django_sponsoring.models.sponsors_img_upload_to, verbose_name='Sponsor image')),
+                ('img', models.ImageField(upload_to=dj_sponsoring.models.sponsors_img_upload_to, verbose_name='Sponsor image')),
                 ('alt', models.CharField(max_length=128, verbose_name='Sponsor image alternative text')),
                 ('description', models.TextField(blank=True, max_length=512, verbose_name='Sponsor image description text')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Sponsor image creation date')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='Sponsor image last modification date')),
-                ('sponsor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='django_sponsoring.Sponsor')),
+                ('sponsor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dj_sponsoring.Sponsor')),
             ],
             options={
                 'verbose_name': 'Sponsor photo',

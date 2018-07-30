@@ -5,5 +5,5 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^', include('django_sponsoring.urls', namespace='django_sponsoring')),
+    url(r'^', include('dj_sponsoring.urls', namespace='dj_sponsoring')),
 ]

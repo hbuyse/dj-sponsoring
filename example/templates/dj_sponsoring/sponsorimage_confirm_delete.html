@@ -1,0 +1,10 @@
+{% extends "dj_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <p>Voulez-vous vraiment supprimer l'image "{{ object }}"?</p>
+  {% bootstrap_button "Confirmer" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock %}

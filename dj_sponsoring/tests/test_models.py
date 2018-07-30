@@ -2,15 +2,15 @@
 # coding=utf-8
 
 """
-test_django-sponsoring
+test_dj-sponsoring
 ------------
 
-Tests for `django-sponsoring` models module.
+Tests for `dj-sponsoring` models module.
 """
 
 from django.test import TestCase
 
-from django_sponsoring.models import Sponsor, SponsorImage, SponsorFile
+from dj_sponsoring.models import Sponsor, SponsorImage, SponsorFile
 
 
 class TestSponsor(TestCase):

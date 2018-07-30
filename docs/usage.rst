@@ -8,7 +8,7 @@ To use Django Sponsoring in a project, add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'django_sponsoring.apps.DjangoSponsoringConfig',
+        'dj_sponsoring.apps.DjangoSponsoringConfig',
         ...
     )
 
@@ -16,11 +16,11 @@ Add Django Sponsoring's URL patterns:
 
 .. code-block:: python
 
-    from django_sponsoring import urls as django_sponsoring_urls
+    from dj_sponsoring import urls as dj_sponsoring_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(django_sponsoring_urls)),
+        url(r'^', include(dj_sponsoring_urls)),
         ...
     ]

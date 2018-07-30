@@ -38,29 +38,37 @@ class SponsorUpdateView(UpdateView):
         return reverse('dj-sponsoring:sponsor-detail', kwargs={'pk': self.object.id})
 
 
-class SponsorImageCreateView(CreateView):
-
+class SponsorImageListView(ListView):
     model = SponsorImage
-
-
-class SponsorImageDeleteView(DeleteView):
-
-    model = SponsorImage
+    context_object_name = 'images'
+    queryset = SponsorImage.objects.order_by("sponsor", "created")
 
 
 class SponsorImageDetailView(DetailView):
-
     model = SponsorImage
+
+
+class SponsorImageCreateView(CreateView):
+    model = SponsorImage
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
+
+
+class SponsorImageDeleteView(DeleteView):
+    model = SponsorImage
+
+    def get_success_url(self):
+        return reverse('dj-sponsoring:sponsor-image-list')
 
 
 class SponsorImageUpdateView(UpdateView):
-
     model = SponsorImage
+    fields = '__all__'
 
-
-class SponsorImageListView(ListView):
-
-    model = SponsorImage
+    def get_success_url(self):
+        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorFileCreateView(CreateView):
