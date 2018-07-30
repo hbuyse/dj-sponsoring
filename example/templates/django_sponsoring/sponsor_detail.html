@@ -1,0 +1,13 @@
+{% extends "django_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <p>{{ sponsor }}</p>
+
+  <p>{{ sponsor.summary }}</p>
+  <p>{{ sponsor.description_md|safe }}</p>
+
+  {% if sponsor.logo %}
+    <img class="d-block w-100" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
+  {% endif %}
+{% endblock %}

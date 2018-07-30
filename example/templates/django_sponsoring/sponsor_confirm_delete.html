@@ -1,0 +1,10 @@
+{% extends "django_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <p>Voulez-vous vraiment supprimer le sponsor "{{ sponsor }}"?</p>
+  {% bootstrap_button "Confirmer" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock %}
