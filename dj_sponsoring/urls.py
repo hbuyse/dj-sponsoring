@@ -60,29 +60,29 @@ urlpatterns = [
         name='sponsor-image-list',
     ),
     path(
-        route="sponsors/file/create/",
+        route="sponsors/document/create/",
         view=views.SponsorDocumentCreateView.as_view(),
-        name='sponsor-file-create',
+        name='sponsor-document-create',
     ),
     path(
-        route="sponsors/file/<int:pk>/delete/",
+        route="sponsors/document/<int:pk>/delete/",
         view=views.SponsorDocumentDeleteView.as_view(),
-        name='sponsor-file-delete',
+        name='sponsor-document-delete',
     ),
     path(
-        route="sponsors/file/<int:pk>/",
+        route="sponsors/document/<int:pk>/",
         view=views.SponsorDocumentDetailView.as_view(),
-        name='sponsor-file-detail',
+        name='sponsor-document-detail',
     ),
     path(
-        route="sponsors/file/<int:pk>/update/",
+        route="sponsors/document/<int:pk>/update/",
         view=views.SponsorDocumentUpdateView.as_view(),
-        name='sponsor-file-update',
+        name='sponsor-document-update',
     ),
     path(
-        route="sponsors/file/",
+        route="sponsors/document/",
         view=views.SponsorDocumentListView.as_view(),
-        name='sponsor-file-list',
+        name='sponsor-document-list',
     ),
 ]
 
