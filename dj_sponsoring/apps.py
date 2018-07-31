@@ -1,6 +1,6 @@
-# -*- coding: utf-8
+# coding=utf-8
 from django.apps import AppConfig
 
 
-class DjangoSponsoringConfig(AppConfig):
+class DjSponsoringConfig(AppConfig):
     name = 'dj_sponsoring'
