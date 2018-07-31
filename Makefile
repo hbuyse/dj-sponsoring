@@ -28,10 +28,10 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*~' -exec rm -f {} +
 
 lint: ## check style with flake8
-	flake8 dj_sponsoring tests
+	flake8 dj_sponsoring
 
 test: ## run tests quickly with the default Python
-	python runtests.py tests
+	python runtests.py dj_sponsoring/tests
 
 test-all: ## run tests on every Python version with tox
 	tox
