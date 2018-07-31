@@ -2,22 +2,22 @@
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import permission_required
 from django.urls import path
-
 from . import views
 
 
 app_name = 'dj-sponsoring'
 urlpatterns = [
     path(
-        route="sponsors/create/",
-        view=views.SponsorCreateView.as_view(),
-        name='sponsor-create',
+        route="sponsors/",
+        view=views.SponsorListView.as_view(),
+        name='sponsor-list',
     ),
     path(
-        route="sponsors/<int:pk>/delete/",
-        view=views.SponsorDeleteView.as_view(),
-        name='sponsor-delete',
+        route="sponsors/create/",
+        view=permission_required('dj_sponsoring.add_sponsor')(views.SponsorCreateView.as_view()),
+        name='sponsor-create',
     ),
     path(
         route="sponsors/<int:pk>/",
@@ -25,24 +25,24 @@ urlpatterns = [
         name='sponsor-detail',
     ),
     path(
+        route="sponsors/<int:pk>/delete/",
+        view=permission_required('dj_sponsoring.delete_sponsor')(views.SponsorDeleteView.as_view()),
+        name='sponsor-delete',
+    ),
+    path(
         route="sponsors/<int:pk>/update/",
-        view=views.SponsorUpdateView.as_view(),
+        view=permission_required('dj_sponsoring.change_sponsor')(views.SponsorUpdateView.as_view()),
         name='sponsor-update',
     ),
     path(
-        route="sponsors/",
-        view=views.SponsorListView.as_view(),
-        name='sponsor-list',
+        route="sponsors/image/",
+        view=views.SponsorImageListView.as_view(),
+        name='sponsor-image-list',
     ),
     path(
         route="sponsors/image/create/",
-        view=views.SponsorImageCreateView.as_view(),
+        view=permission_required('dj_sponsoring.add_sponsorimage')(views.SponsorImageCreateView.as_view()),
         name='sponsor-image-create',
-    ),
-    path(
-        route="sponsors/image/<int:pk>/delete/",
-        view=views.SponsorImageDeleteView.as_view(),
-        name='sponsor-image-delete',
     ),
     path(
         route="sponsors/image/<int:pk>/",
@@ -51,23 +51,23 @@ urlpatterns = [
     ),
     path(
         route="sponsors/image/<int:pk>/update/",
-        view=views.SponsorImageUpdateView.as_view(),
+        view=permission_required('dj_sponsoring.delete_sponsorimage')(views.SponsorImageUpdateView.as_view()),
         name='sponsor-image-update',
     ),
     path(
-        route="sponsors/image/",
-        view=views.SponsorImageListView.as_view(),
-        name='sponsor-image-list',
+        route="sponsors/image/<int:pk>/delete/",
+        view=permission_required('dj_sponsoring.change_sponsorimage')(views.SponsorImageDeleteView.as_view()),
+        name='sponsor-image-delete',
+    ),
+    path(
+        route="sponsors/document/",
+        view=views.SponsorDocumentListView.as_view(),
+        name='sponsor-document-list',
     ),
     path(
         route="sponsors/document/create/",
-        view=views.SponsorDocumentCreateView.as_view(),
+        view=permission_required('dj_sponsoring.add_sponsordocument')(views.SponsorDocumentCreateView.as_view()),
         name='sponsor-document-create',
-    ),
-    path(
-        route="sponsors/document/<int:pk>/delete/",
-        view=views.SponsorDocumentDeleteView.as_view(),
-        name='sponsor-document-delete',
     ),
     path(
         route="sponsors/document/<int:pk>/",
@@ -76,13 +76,13 @@ urlpatterns = [
     ),
     path(
         route="sponsors/document/<int:pk>/update/",
-        view=views.SponsorDocumentUpdateView.as_view(),
+        view=permission_required('dj_sponsoring.delete_sponsordocument')(views.SponsorDocumentUpdateView.as_view()),
         name='sponsor-document-update',
     ),
     path(
-        route="sponsors/document/",
-        view=views.SponsorDocumentListView.as_view(),
-        name='sponsor-document-list',
+        route="sponsors/document/<int:pk>/delete/",
+        view=permission_required('dj_sponsoring.change_sponsordocument')(views.SponsorDocumentDeleteView.as_view()),
+        name='sponsor-document-delete',
     ),
 ]
 
