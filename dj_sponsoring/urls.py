@@ -1,9 +1,8 @@
 # coding=utf-8
 
-from django.urls import path
-
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
 
 from . import views
 
@@ -62,27 +61,27 @@ urlpatterns = [
     ),
     path(
         route="sponsors/file/create/",
-        view=views.SponsorFileCreateView.as_view(),
+        view=views.SponsorDocumentCreateView.as_view(),
         name='sponsor-file-create',
     ),
     path(
         route="sponsors/file/<int:pk>/delete/",
-        view=views.SponsorFileDeleteView.as_view(),
+        view=views.SponsorDocumentDeleteView.as_view(),
         name='sponsor-file-delete',
     ),
     path(
         route="sponsors/file/<int:pk>/",
-        view=views.SponsorFileDetailView.as_view(),
+        view=views.SponsorDocumentDetailView.as_view(),
         name='sponsor-file-detail',
     ),
     path(
         route="sponsors/file/<int:pk>/update/",
-        view=views.SponsorFileUpdateView.as_view(),
+        view=views.SponsorDocumentUpdateView.as_view(),
         name='sponsor-file-update',
     ),
     path(
         route="sponsors/file/",
-        view=views.SponsorFileListView.as_view(),
+        view=views.SponsorDocumentListView.as_view(),
         name='sponsor-file-list',
     ),
 ]

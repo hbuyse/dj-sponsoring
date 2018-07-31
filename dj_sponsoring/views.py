@@ -1,9 +1,19 @@
 # coding=utf-8
 
 from django.urls import reverse
-from django.views.generic import CreateView, DeleteView, DetailView, UpdateView, ListView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
-from .models import Sponsor, SponsorImage, SponsorFile
+from .models import (
+    Sponsor,
+    SponsorDocument,
+    SponsorImage,
+)
 
 
 class SponsorListView(ListView):
@@ -71,26 +81,26 @@ class SponsorImageUpdateView(UpdateView):
         return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
-class SponsorFileCreateView(CreateView):
+class SponsorDocumentCreateView(CreateView):
 
-    model = SponsorFile
-
-
-class SponsorFileDeleteView(DeleteView):
-
-    model = SponsorFile
+    model = SponsorDocument
 
 
-class SponsorFileDetailView(DetailView):
+class SponsorDocumentDeleteView(DeleteView):
 
-    model = SponsorFile
-
-
-class SponsorFileUpdateView(UpdateView):
-
-    model = SponsorFile
+    model = SponsorDocument
 
 
-class SponsorFileListView(ListView):
+class SponsorDocumentDetailView(DetailView):
 
-    model = SponsorFile
+    model = SponsorDocument
+
+
+class SponsorDocumentUpdateView(UpdateView):
+
+    model = SponsorDocument
+
+
+class SponsorDocumentListView(ListView):
+
+    model = SponsorDocument
