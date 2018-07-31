@@ -31,7 +31,7 @@ lint: ## check style with flake8
 	flake8 dj_sponsoring
 
 test: ## run tests quickly with the default Python
-	python runtests.py dj_sponsoring/tests
+	pytest
 
 test-all: ## run tests on every Python version with tox
 	tox
