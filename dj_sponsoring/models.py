@@ -8,6 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 
+from tinymce import models as tinymce_models
+
 
 def sponsors_upload_to(instance, filename):
     """Callback to create the path where to store the files
@@ -34,8 +36,8 @@ class Sponsor(models.Model):
     """Sponsor entry class handler"""
     name = models.CharField(_('Sponsor name'), max_length=128)
     summary = models.CharField(_('Sponsor summary'), max_length=512)
-    description = MarkdownxField(_('Sponsor description'))
-    logo = models.ImageField(upload_to=sponsors_upload_to)
+    description = tinymce_models.HTMLField(_('Sponsor description'))
+    logo = models.ImageField(_('Sponsor logo'), upload_to=sponsors_upload_to)
     url = models.URLField(_('Sponsor url'))
     created = models.DateTimeField('Sponsor creation date', auto_now_add=True)
     modified = models.DateTimeField('Sponsor last modification date', auto_now=True)

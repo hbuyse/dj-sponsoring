@@ -1,5 +1,4 @@
 {% extends "dj_sponsoring/base.html" %}
-{% load bootstrap4 %}
 
 {% block content %}
   <h1>{{ sponsor }}</h1>
@@ -8,7 +7,7 @@
     <a href="{% url 'dj-sponsoring:sponsor-update' sponsor.id %}" class="btn btn-secondary btn-sm">Update</a>
     <a href="{% url 'dj-sponsoring:sponsor-delete' sponsor.id %}" class="btn btn-secondary btn-sm">Delete</a>
     <a href="{% url 'dj-sponsoring:sponsor-image-create' %}" class="btn btn-secondary btn-sm">Add image</a>
-    <a href="{% url 'dj-sponsoring:sponsor-file-create' %}" class="btn btn-secondary btn-sm">Add document</a>
+    <a href="{% url 'dj-sponsoring:sponsor-document-create' %}" class="btn btn-secondary btn-sm">Add document</a>
   </div>
 
   {% if sponsor.logo %}

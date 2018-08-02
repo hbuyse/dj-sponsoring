@@ -1,10 +1,9 @@
 # coding=utf-8
 from __future__ import absolute_import, unicode_literals
 
-import django
 import os
 
-DEBUG = True
+DEBUG = False
 USE_TZ = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -25,7 +24,9 @@ ROOT_URLCONF = "dj_sponsoring.tests.urls"
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    'django.contrib.sessions',
     "django.contrib.sites",
+    'tinymce',
     "dj_sponsoring",
 ]
 
@@ -40,6 +41,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.media",
+                "django.template.context_processors.static"
             ],
         },
     },
@@ -47,7 +50,11 @@ TEMPLATES = [
 
 SITE_ID = 1
 
-if django.VERSION >= (1, 10):
-    MIDDLEWARE = ()
-else:
-    MIDDLEWARE_CLASSES = ()
+MIDDLEWARE = (
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+)
