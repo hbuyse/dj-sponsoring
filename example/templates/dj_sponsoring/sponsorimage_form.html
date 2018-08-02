@@ -1,10 +1,11 @@
 {% extends "dj_sponsoring/base.html" %}
+{% load bootstrap4 %}
 
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form layout="horizontal" %}
     {{ form.media }}
-    <button class="btn btn-primary btn-sm" type="submit">Button</button>
+    {% bootstrap_button "Enregistrer" button_type="submit" button_class="btn-primary btn-sm" %}
   </form>
 {% endblock %}

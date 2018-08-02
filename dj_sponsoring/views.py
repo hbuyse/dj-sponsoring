@@ -9,11 +9,6 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
-from .forms import (
-    SponsorDocumentForm,
-    SponsorForm,
-    SponsorImageForm,
-)
 
 from .models import (
     Sponsor,
@@ -33,7 +28,7 @@ class SponsorDetailView(DetailView):
 
 class SponsorCreateView(PermissionRequiredMixin, CreateView):
     model = Sponsor
-    form_class = SponsorForm
+    fields = '__all__'
     permission_required = 'dj_sponsoring.add_sponsor'
 
     def get_success_url(self):
@@ -41,7 +36,8 @@ class SponsorCreateView(PermissionRequiredMixin, CreateView):
 
 
 class SponsorUpdateView(PermissionRequiredMixin, UpdateView):
-    form_class = SponsorForm
+    model = Sponsor
+    fields = '__all__'
     permission_required = 'dj_sponsoring.change_sponsor'
 
     def get_success_url(self):
@@ -66,7 +62,8 @@ class SponsorImageDetailView(DetailView):
 
 
 class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
-    form_class = SponsorImageForm
+    model = SponsorImage
+    fields = '__all__'
     permission_required = 'dj_sponsoring.add_sponsorimage'
 
     def get_success_url(self):
@@ -74,7 +71,8 @@ class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
 
 
 class SponsorImageUpdateView(PermissionRequiredMixin, UpdateView):
-    form_class = SponsorImageForm
+    model = SponsorImage
+    fields = '__all__'
     permission_required = 'dj_sponsoring.change_sponsorimage'
 
     def get_success_url(self):
@@ -97,22 +95,27 @@ class SponsorDocumentDetailView(DetailView):
     model = SponsorDocument
 
 
-class SponsorDocumentCreateView(CreateView):
-    form_class = SponsorDocumentForm
-
-    def get_success_url(self):
-        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
-
-
-class SponsorDocumentUpdateView(UpdateView):
-    form_class = SponsorDocumentForm
-
-    def get_success_url(self):
-        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
-
-
-class SponsorDocumentDeleteView(DeleteView):
+class SponsorDocumentCreateView(PermissionRequiredMixin, CreateView):
     model = SponsorDocument
+    fields = '__all__'
+    permission_required = 'dj_sponsoring.add_sponsordocument'
+
+    def get_success_url(self):
+        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
+
+
+class SponsorDocumentUpdateView(PermissionRequiredMixin, UpdateView):
+    model = SponsorDocument
+    fields = '__all__'
+    permission_required = 'dj_sponsoring.change_sponsordocument'
+
+    def get_success_url(self):
+        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
+
+
+class SponsorDocumentDeleteView(PermissionRequiredMixin, DeleteView):
+    model = SponsorDocument
+    permission_required = 'dj_sponsoring.delete_sponsordocument'
 
     def get_success_url(self):
         return reverse('dj-sponsoring:sponsor-document-list')

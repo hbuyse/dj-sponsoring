@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta name="author" content="hbuyse">
+
+    {# Load the static files library #}
+    {% load staticfiles %}
+
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load Bootstrap4 CSS#}
+    {% bootstrap_css %}
+
+    <title>{% block title %}dj-sponsoring{% endblock %}</title>
+  </head>
+  <body style="padding-top: 70px;" content="text/html" class="bs-docs-home">
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="#">dj-sponsoring</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sponsors
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'dj-sponsoring:sponsor-list' %}">List</a>
+              <a class="dropdown-item {% if not user.is_authenticated %}disabled{% endif %}" href="{% url 'dj-sponsoring:sponsor-create' %}">Create</a>
+            </div>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </header>
+
+    <div class="container">
+      {% bootstrap_messages %}
+
+      {% block content %}
+      <div class="row m-t-2">
+        <p>Use this document as a way to quick start any new project.</p>
+        <p>The current template is loaded from
+          <code>dj-sponsoring/example/templates/base.html</code>. </p>
+        <p>Whenever you overwrite the contents of <code>dj-sponsoring/dj_sponsoring/urls.py</code> with your
+          own content, you should see it here.</p>
+      </div>
+      {% endblock content %}
+
+    </div> <!-- /container -->
+
+    {# Load Bootstrap JavaScript #}
+    {% bootstrap_javascript jquery='full' %}
+  </body>
+</html>
+

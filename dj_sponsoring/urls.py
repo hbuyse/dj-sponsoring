@@ -40,7 +40,7 @@ urlpatterns = [
     ),
     path(
         route="sponsors/image/create",
-        view=permission_required('dj_sponsoring.add_sponsorimage')(views.SponsorImageCreateView.as_view()),
+        view=views.SponsorImageCreateView.as_view(),
         name='sponsor-image-create',
     ),
     path(
@@ -50,12 +50,12 @@ urlpatterns = [
     ),
     path(
         route="sponsors/image/<int:pk>/update",
-        view=permission_required('dj_sponsoring.delete_sponsorimage')(views.SponsorImageUpdateView.as_view()),
+        view=views.SponsorImageUpdateView.as_view(),
         name='sponsor-image-update',
     ),
     path(
         route="sponsors/image/<int:pk>/delete",
-        view=permission_required('dj_sponsoring.change_sponsorimage')(views.SponsorImageDeleteView.as_view()),
+        view=views.SponsorImageDeleteView.as_view(),
         name='sponsor-image-delete',
     ),
     path(
@@ -65,7 +65,7 @@ urlpatterns = [
     ),
     path(
         route="sponsors/document/create",
-        view=permission_required('dj_sponsoring.add_sponsordocument')(views.SponsorDocumentCreateView.as_view()),
+        view=views.SponsorDocumentCreateView.as_view(),
         name='sponsor-document-create',
     ),
     path(
@@ -75,12 +75,12 @@ urlpatterns = [
     ),
     path(
         route="sponsors/document/<int:pk>/update",
-        view=permission_required('dj_sponsoring.delete_sponsordocument')(views.SponsorDocumentUpdateView.as_view()),
+        view=views.SponsorDocumentUpdateView.as_view(),
         name='sponsor-document-update',
     ),
     path(
         route="sponsors/document/<int:pk>/delete",
-        view=permission_required('dj_sponsoring.change_sponsordocument')(views.SponsorDocumentDeleteView.as_view()),
+        view=views.SponsorDocumentDeleteView.as_view(),
         name='sponsor-document-delete',
     ),
 ]

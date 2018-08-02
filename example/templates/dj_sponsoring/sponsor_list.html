@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  {% for s in sponsors %}
+    {% if forloop.first %}
+      <div class="list-group">
+    {% endif %}
+
+    <a href="{% url 'dj-sponsoring:sponsor-detail' s.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex row">
+        <img class="col-md-2" class="mr-2" src="{{ s.logo.url }}" alt="{{ s }}">
+        <div class="col-md-10 align-self-center">
+          <h5 class="mb-1">{{ s }}</h5>
+          <p class="mb-1">{{ s.summary }}</p>
+        </div>
+      </div>
+    </a>
+
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+  {% empty %}
+  <p>No sponsors...</p>
+  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-create' %}">here</a></p>
+  {% endfor %}
+{% endblock %}
