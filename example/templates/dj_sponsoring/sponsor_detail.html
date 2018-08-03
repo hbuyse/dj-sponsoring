@@ -2,31 +2,27 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h1>{{ sponsor }}</h1>
 
-  <div class="btn-group" role="group">
+  <div class="btn-group float-right" role="group">
     <a href="{% url 'dj-sponsoring:sponsor-update' sponsor.id %}" class="btn btn-secondary btn-sm">Update</a>
     <a href="{% url 'dj-sponsoring:sponsor-delete' sponsor.id %}" class="btn btn-secondary btn-sm">Delete</a>
     <a href="{% url 'dj-sponsoring:sponsor-image-create' %}" class="btn btn-secondary btn-sm">Add image</a>
     <a href="{% url 'dj-sponsoring:sponsor-document-create' %}" class="btn btn-secondary btn-sm">Add document</a>
   </div>
+  <h1>{{ sponsor }} <a href="{{ sponsor.url }}" class="badge badge-info">Link</a></h1>
+
 
   {% if sponsor.logo %}
-    <div class="row m-t-1">
-      <div class="col-3 float-left">
-        <img class="d-block w-100" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
-      </div>
-      <div class="col-9 float-right">
-        <p>{{ sponsor.summary }}</p>
-        <p>{{ sponsor.description_md|safe }}</p>
-      </div>
-    </div>
+    <img class="d-block w-25 float-left mr-2 mb-2" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
+    <em>{{ sponsor.summary }}</em>
+    <p>{{ sponsor.description_md|safe }}</p>
   {% else %}
     <p>{{ sponsor.summary }}</p>
     <p>{{ sponsor.description_md|safe }}</p>
   {% endif %}
 
-  <div id="carouselSponsorImageIndicators" class="carousel slide w-100" data-ride="carousel">
+  <div class="align-items-center">
+  <div id="carouselSponsorImageIndicators" class="carousel slide w-75 mt-2 mx-auto" data-ride="carousel">
     <ol class="carousel-indicators">
       {% for i in sponsor.sponsorimage_set.all %}
         <li data-target="#carouselSponsorImageIndicators" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
@@ -47,5 +43,6 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+  </div>
   </div>
 {% endblock %}
