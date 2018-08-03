@@ -2,20 +2,21 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  {% for i in images %}
-    {% ifchanged i.sponsor %}
+  <h1>Images du sponsor '{{ sponsor }}'</h1>
+  {% for image in page_obj %}
+    {% ifchanged image.sponsor %}
       {% if not forloop.first %}
         </div>
       {% endif %}
       <div class="list-group">  
     {% endifchanged %}
 
-    <a href="{% url 'dj-sponsoring:sponsor-image-detail' i.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a href="{% url 'dj-sponsoring:sponsors-images-detail' image.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex row">
-        <img class="col-md-2" class="mr-2" src="{{ i.img.url }}" alt="{{ i.alt }}">
+        <img class="col-md-2" class="mr-2" src="{{ image.img.url }}" alt="{{ i.alt }}">
         <div class="col-md-10 align-self-center">
-          <h5 class="mb-1">{{ i }}</h5>
-          <p class="mb-1">{{ i.description }}</p>
+          <h5 class="mb-1">{{ image }}</h5>
+          <p class="mb-1">{{ image.description }}</p>
         </div>
       </div>
     </a>
@@ -24,7 +25,7 @@
       </div>
     {% endif %}
   {% empty %}
-  <p>No sponsors images...</p>
+  <p>No sponsors images... Toto</p>
   <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-create-image' sponsor.id %}">here</a></p>
   {% endfor %}
 {% endblock %}

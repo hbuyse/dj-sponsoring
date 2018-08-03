@@ -29,7 +29,7 @@
               Sponsors
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'dj-sponsoring:sponsor-list' %}">List</a>
+              <a class="dropdown-item" href="{% url 'dj-sponsoring:sponsors-list' %}">List</a>
               <a class="dropdown-item {% if not user.is_authenticated %}disabled{% endif %}" href="{% url 'dj-sponsoring:sponsor-create' %}">Create</a>
             </div>
           </li>

@@ -1,6 +1,8 @@
 # coding=utf-8
 
-from django.contrib.auth.decorators import permission_required
+"""urls for the dj-sponsoring package."""
+
+
 from django.urls import path
 
 from . import views
@@ -16,37 +18,42 @@ urlpatterns = [
     path(
         route="sponsors/create",
         view=views.SponsorCreateView.as_view(),
-        name='sponsors-create',
+        name='sponsor-create',
     ),
     path(
         route="sponsors/<int:pk>",
         view=views.SponsorDetailView.as_view(),
-        name='sponsors-detail',
+        name='sponsor-detail',
     ),
     path(
         route="sponsors/<int:pk>/update",
         view=views.SponsorUpdateView.as_view(),
-        name='sponsors-update',
+        name='sponsor-update',
     ),
     path(
         route="sponsors/<int:pk>/delete",
         view=views.SponsorDeleteView.as_view(),
-        name='sponsors-delete',
+        name='sponsor-delete',
     ),
     path(
         route="sponsors/<int:pk>/images",
         view=views.SponsorImageListView.as_view(),
-        name='sponsors-delete',
+        name='sponsor-list-images',
     ),
     path(
         route="sponsors/<int:pk>/images/create",
         view=views.SponsorImageCreateView.as_view(),
-        name='sponsors-delete',
+        name='sponsor-create-image',
     ),
     path(
-        route="sponsors/images/create",
-        view=views.SponsorImageCreateView.as_view(),
-        name='sponsors-images-create',
+        route="sponsors/<int:pk>/documents",
+        view=views.SponsorDocumentListView.as_view(),
+        name='sponsor-list-document',
+    ),
+    path(
+        route="sponsors/<int:pk>/documents/create",
+        view=views.SponsorDocumentCreateView.as_view(),
+        name='sponsor-create-document',
     ),
     path(
         route="sponsors/images/<int:pk>",
@@ -62,16 +69,6 @@ urlpatterns = [
         route="sponsors/images/<int:pk>/delete",
         view=views.SponsorImageDeleteView.as_view(),
         name='sponsors-images-delete',
-    ),
-    path(
-        route="sponsors/documents",
-        view=views.SponsorDocumentListView.as_view(),
-        name='sponsors-documents-list',
-    ),
-    path(
-        route="sponsors/documents/create",
-        view=views.SponsorDocumentCreateView.as_view(),
-        name='sponsors-documents-create',
     ),
     path(
         route="sponsors/documents/<int:pk>",
