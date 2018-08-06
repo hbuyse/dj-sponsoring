@@ -3,13 +3,6 @@
 {% block content %}
 
   <h1 class="float-left">{{ sponsor }}</h1>
-  <div class="btn-group float-right" role="group">
-    <a href="{% url 'dj-sponsoring:sponsor-update' sponsor.id %}" class="btn btn-secondary btn-sm">Update</a>
-    <a href="{% url 'dj-sponsoring:sponsor-delete' sponsor.id %}" class="btn btn-secondary btn-sm">Delete</a>
-    <a href="{% url 'dj-sponsoring:sponsor-image-create' %}" class="btn btn-secondary btn-sm">Add image</a>
-    <a href="{% url 'dj-sponsoring:sponsor-document-create' %}" class="btn btn-secondary btn-sm">Add document</a>
-  </div>
-
 
   {% if sponsor.logo %}
     <div class="col-1 float-left">

@@ -4,11 +4,6 @@
 {% block content %}
   <h1>{{ object }}</h1>
 
-  <div class="btn-group" role="group">
-    <a href="{% url 'dj-sponsoring:sponsor-image-update' object.id %}" class="btn btn-secondary btn-sm">Update</a>
-    <a href="{% url 'dj-sponsoring:sponsor-image-delete' object.id %}" class="btn btn-secondary btn-sm">Delete</a>
-  </div>
-
   <img class="d-block w-100" src="{{ object.img.url }}" alt="{{ object.alt }}">
 
   <p>Alternative text: {{ object.alt }}</p>

@@ -2,12 +2,12 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h1>{{ object }}</h1>
-
-  <div class="btn-group" role="group">
-    <a href="{% url 'dj-sponsoring:sponsors-images-update' object.id %}" class="btn btn-secondary btn-sm">Update</a>
-    <a href="{% url 'dj-sponsoring:sponsors-images-delete' object.id %}" class="btn btn-secondary btn-sm">Delete</a>
+  <div class="btn-group float-right" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-image-update' object.id %}" class="btn btn-primary btn-sm">Update</a>
+    <a href="{% url 'dj-sponsoring:sponsor-image-delete' object.id %}" class="btn btn-danger btn-sm">Delete</a>
   </div>
+
+  <h1>{{ object }}</h1>
 
   <img class="d-block w-100" src="{{ object.img.url }}" alt="{{ object.alt }}">
 

@@ -15,7 +15,7 @@ class TestSponsorListView(TestCase):
 
     def test_sponsors_list_view_empty(self):
         """Tests."""
-        r = self.client.get(reverse('dj_sponsoring:sponsor-list'))
+        r = self.client.get(reverse('dj_sponsoring:sponsors-list'))
         self.assertEqual(r.status_code, 200)
         self.assertIn("No sponsors...", str(r.content))
 
@@ -118,6 +118,5 @@ class TestSponsorCreateView(TestCase):
         self.user.user_permissions.add(Permission.objects.get(name='Can add sponsor'))
         r = self.client.post(reverse('dj_sponsoring:sponsor-create'))
         r = self.client.post(reverse('dj_sponsoring:sponsor-create'), self.dict)
-        # print(r.status_code)
         self.assertEqual(r.status_code, 200)
         self.assertEqual(Sponsor.objects.last().name, "Toto")
