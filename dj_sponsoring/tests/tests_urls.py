@@ -7,13 +7,13 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class TestUrls(TestCase):
+class TestUrlsSponsor(TestCase):
     """Tests the urls for the dj-sponsoring."""
 
     def test_sponsor_list_url(self):
         """Test the URL of the listing of sponsors."""
         url = reverse('dj_sponsoring:sponsors-list')
-        self.assertEqual(url, '/sponsors')
+        self.assertEqual(url, '/sponsors/')
 
     def test_sponsor_create_url(self):
         """Test the URL of that allows the creation of a sponsor."""
@@ -35,27 +35,31 @@ class TestUrls(TestCase):
         url = reverse('dj_sponsoring:sponsor-delete', kwargs={'pk': 1})
         self.assertEqual(url, "/sponsors/1/delete")
 
+
+class TestUrlsSponsorImage(TestCase):
+    """Tests the urls for the dj-sponsoring."""
+
     def test_sponsor_list_images_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-list-images', kwargs={'pk': 1})
+        url = reverse('dj_sponsoring:sponsor-images-list', kwargs={'pk': 1})
         self.assertEqual(url, "/sponsors/1/images")
 
     def test_sponsor_image_create_url(self):
         """Test the URL that adds a image to a specific sponsor."""
-        url = reverse('dj_sponsoring:sponsor-add-image', kwargs={'pk': 1})
-        self.assertEqual(url, '/sponsors/1/images/add')
+        url = reverse('dj_sponsoring:sponsor-image-create', kwargs={'pk': 1})
+        self.assertEqual(url, '/sponsors/1/images/create')
 
     def test_sponsor_image_detail_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-detail-image', kwargs={'pk': 1, 'pk_img': 2})
+        url = reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': 1, 'pk_img': 2})
         self.assertEqual(url, '/sponsors/1/images/2')
 
     def test_sponsor_image_update_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-update-image', kwargs={'pk': 1, 'pk_img': 2})
+        url = reverse('dj_sponsoring:sponsor-image-update', kwargs={'pk': 1, 'pk_img': 2})
         self.assertEqual(url, "/sponsors/1/images/2/update")
 
     def test_sponsor_image_delete_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-delete-image', kwargs={'pk': 1, 'pk_img': 2})
+        url = reverse('dj_sponsoring:sponsor-image-delete', kwargs={'pk': 1, 'pk_img': 2})
         self.assertEqual(url, "/sponsors/1/images/2/delete")
