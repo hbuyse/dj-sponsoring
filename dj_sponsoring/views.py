@@ -3,7 +3,6 @@
 """Views."""
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import (
     CreateView,
@@ -162,6 +161,7 @@ class SponsorDocumentCreateView(CreateView):
 
     model = SponsorDocument
     fields = '__all__'
+    permission_required = 'dj_sponsoring.add_sponsordocument'
 
     def get_success_url(self):
         """Get the URL after the success."""
@@ -173,6 +173,7 @@ class SponsorDocumentUpdateView(UpdateView):
 
     model = SponsorDocument
     fields = '__all__'
+    permission_required = 'dj_sponsoring.change_sponsordocument'
 
     def get_success_url(self):
         """Get the URL after the success."""
@@ -183,6 +184,7 @@ class SponsorDocumentDeleteView(DeleteView):
     """SponsorDocumentDeleteView."""
 
     model = SponsorDocument
+    permission_required = 'dj_sponsoring.delete_sponsordocument'
 
     def get_success_url(self):
         """Get the URL after the success."""

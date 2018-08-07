@@ -51,15 +51,44 @@ class TestUrlsSponsorImage(TestCase):
 
     def test_sponsor_image_detail_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': 1, 'pk_img': 2})
-        self.assertEqual(url, '/sponsors/1/images/2')
+        url = reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': 1})
+        self.assertEqual(url, '/sponsors/images/1')
 
     def test_sponsor_image_update_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-image-update', kwargs={'pk': 1, 'pk_img': 2})
-        self.assertEqual(url, "/sponsors/1/images/2/update")
+        url = reverse('dj_sponsoring:sponsor-image-update', kwargs={'pk': 1})
+        self.assertEqual(url, "/sponsors/images/1/update")
 
     def test_sponsor_image_delete_url(self):
         """Test the URL of the listing of sponsors."""
-        url = reverse('dj_sponsoring:sponsor-image-delete', kwargs={'pk': 1, 'pk_img': 2})
-        self.assertEqual(url, "/sponsors/1/images/2/delete")
+        url = reverse('dj_sponsoring:sponsor-image-delete', kwargs={'pk': 1})
+        self.assertEqual(url, "/sponsors/images/1/delete")
+
+
+class TestUrlsSponsorDocument(TestCase):
+    """Tests the urls for the dj-sponsoring."""
+
+    def test_sponsor_list_documents_url(self):
+        """Test the URL of the listing of sponsors."""
+        url = reverse('dj_sponsoring:sponsor-documents-list', kwargs={'pk': 1})
+        self.assertEqual(url, "/sponsors/1/documents")
+
+    def test_sponsor_document_create_url(self):
+        """Test the URL that adds a document to a specific sponsor."""
+        url = reverse('dj_sponsoring:sponsor-document-create', kwargs={'pk': 1})
+        self.assertEqual(url, '/sponsors/1/documents/create')
+
+    def test_sponsor_document_detail_url(self):
+        """Test the URL of the listing of sponsors."""
+        url = reverse('dj_sponsoring:sponsor-document-detail', kwargs={'pk': 1})
+        self.assertEqual(url, '/sponsors/documents/1')
+
+    def test_sponsor_document_update_url(self):
+        """Test the URL of the listing of sponsors."""
+        url = reverse('dj_sponsoring:sponsor-document-update', kwargs={'pk': 1})
+        self.assertEqual(url, "/sponsors/documents/1/update")
+
+    def test_sponsor_document_delete_url(self):
+        """Test the URL of the listing of sponsors."""
+        url = reverse('dj_sponsoring:sponsor-document-delete', kwargs={'pk': 1})
+        self.assertEqual(url, "/sponsors/documents/1/delete")
