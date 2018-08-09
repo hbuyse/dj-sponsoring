@@ -163,6 +163,15 @@ class SponsorDocumentCreateView(CreateView):
     fields = '__all__'
     permission_required = 'dj_sponsoring.add_sponsordocument'
 
+    def get_initial(self):
+        """."""
+        initial = dict()
+
+        if 'pk' in self.kwargs:
+            initial['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
+
+        return initial
+
     def get_success_url(self):
         """Get the URL after the success."""
         return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
