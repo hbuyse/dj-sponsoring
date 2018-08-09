@@ -5,7 +5,7 @@
 
 from dj_sponsoring.models import Sponsor
 
-from django.contrib.auth.models import AnonymousUser, Group, Permission, User
+from django.contrib.auth.models import Permission, User
 from django.test import TestCase
 from django.urls import reverse
 
@@ -53,7 +53,6 @@ class TestSponsorCreateView(TestCase):
             'name': 'Toto',
             'summary': 'summary',
             'description': 'description',
-            'logo': 'logo',
             'url': 'http://www.google.fr'
         }
         pass
@@ -116,7 +115,6 @@ class TestSponsorCreateView(TestCase):
         self.assertFalse(self.user.has_perm('dj_sponsoring.add_sponsor'))
 
         self.user.user_permissions.add(Permission.objects.get(name='Can add sponsor'))
-        r = self.client.post(reverse('dj_sponsoring:sponsor-create'))
-        r = self.client.post(reverse('dj_sponsoring:sponsor-create'), self.dict)
+        r = self.client.post(reverse('dj_sponsoring:sponsor-create'), data=self.dict)
         self.assertEqual(r.status_code, 200)
         self.assertEqual(Sponsor.objects.last().name, "Toto")
