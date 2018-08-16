@@ -195,3 +195,5 @@ BOOTSTRAP4 = {
         'inline': 'bootstrap4.renderers.InlineFieldRenderer',
     },
 }
+
+LOGIN_URL = "/accounts/login"
