@@ -65,13 +65,13 @@ class TestSponsorCreateView(TestCase):
         """Tests."""
         r = self.client.get(reverse('dj_sponsoring:sponsor-create'))
         self.assertEqual(r.status_code, 302)
-        self.assertIn('?next=/sponsors/create', r.url)
+        self.assertIn('?next=/create', r.url)
 
     def test_sponsors_create_view_post_as_anonymous(self):
         """Tests."""
         r = self.client.post(reverse('dj_sponsoring:sponsor-create'), self.dict)
         self.assertEqual(r.status_code, 302)
-        self.assertIn('?next=/sponsors/create', r.url)
+        self.assertIn('?next=/create', r.url)
 
     def test_sponsors_create_view_get_as_logged_with_wrong_permissions(self):
         """Tests."""
@@ -80,7 +80,7 @@ class TestSponsorCreateView(TestCase):
 
         r = self.client.get(reverse('dj_sponsoring:sponsor-create'))
         self.assertEqual(r.status_code, 302)
-        self.assertIn('?next=/sponsors/create', r.url)
+        self.assertIn('?next=/create', r.url)
 
     def test_sponsors_create_view_post_as_logged_with_wrong_permissions(self):
         """Tests."""
@@ -89,7 +89,7 @@ class TestSponsorCreateView(TestCase):
 
         r = self.client.post(reverse('dj_sponsoring:sponsor-create'), self.dict)
         self.assertEqual(r.status_code, 302)
-        self.assertIn('?next=/sponsors/create', r.url)
+        self.assertIn('?next=/create', r.url)
 
     def test_sponsors_create_view_get_as_logged_with_right_permissions(self):
         """Tests."""
