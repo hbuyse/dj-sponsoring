@@ -2,14 +2,11 @@
 Django Sponsoring
 =============================
 
-.. image:: https://badge.fury.io/py/dj-sponsoring.svg
-    :target: https://badge.fury.io/py/dj-sponsoring
+.. image:: https://gitlab.com/hbuyse/dj-sponsoring/badges/dev/build.svg
+    :target: https://gitlab.com/hbuyse/dj-sponsoring
 
-.. image:: https://travis-ci.org/hbuyse/dj-sponsoring.svg?branch=master
-    :target: https://travis-ci.org/hbuyse/dj-sponsoring
-
-.. image:: https://codecov.io/gh/hbuyse/dj-sponsoring/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/hbuyse/dj-sponsoring
+.. image:: https://gitlab.com/hbuyse/dj-sponsoring/badges/dev/coverage.svg
+    :target: https://gitlab.com/hbuyse/dj-sponsoring
 
 Sponsors pages for django
 
