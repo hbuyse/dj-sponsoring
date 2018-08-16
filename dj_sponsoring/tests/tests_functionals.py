@@ -5,13 +5,15 @@
 import unittest
 import time
 
+from django.test import tag
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
-
+@tag('functional')
 class NewVisitorTest(unittest.TestCase):
     """."""
 
