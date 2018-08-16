@@ -4,8 +4,8 @@
 {% block content %}
 
   <div class="btn-group float-right" role="group">
-    <a href="{% url 'dj-sponsoring:sponsor-image-create' %}" class="btn btn-primary btn-sm">Add image</a>
-    <a href="{% url 'dj-sponsoring:sponsor-document-create' %}" class="btn btn-primary btn-sm">Add document</a>
+    <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}" class="btn btn-primary btn-sm">Add image</a>
+    <a href="{% url 'dj-sponsoring:sponsor-document-create' sponsor.id %}" class="btn btn-primary btn-sm">Add document</a>
     <a href="{% url 'dj-sponsoring:sponsor-update' sponsor.id %}" class="btn btn-primary btn-sm">Update</a>
     <a href="{% url 'dj-sponsoring:sponsor-delete' sponsor.id %}" class="btn btn-danger btn-sm">Delete</a>
   </div>
