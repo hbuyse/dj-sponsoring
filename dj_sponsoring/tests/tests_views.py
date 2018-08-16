@@ -5,9 +5,13 @@
 
 from dj_sponsoring.models import Sponsor
 
+from django.conf import settings
 from django.contrib.auth.models import Permission, User
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
+
+import os.path
 
 
 class TestSponsorListView(TestCase):
@@ -53,7 +57,10 @@ class TestSponsorCreateView(TestCase):
             'name': 'Toto',
             'summary': 'summary',
             'description': 'description',
-            'url': 'http://www.google.fr'
+            'url': 'http://www.google.fr',
+            'logo': SimpleUploadedFile(name='index.png',
+                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content_type='image/png')
         }
         pass
 
@@ -116,5 +123,8 @@ class TestSponsorCreateView(TestCase):
 
         self.user.user_permissions.add(Permission.objects.get(name='Can add sponsor'))
         r = self.client.post(reverse('dj_sponsoring:sponsor-create'), data=self.dict)
-        self.assertEqual(r.status_code, 200)
-        self.assertEqual(Sponsor.objects.last().name, "Toto")
+        s = Sponsor.objects.last()
+        self.assertEqual(s.name, "Toto")
+        self.assertEqual(r.status_code, 302)
+        self.assertEqual(r.url, "/{}".format(s.id))
+        self.assertTrue(os.path.isfile("{}/sponsors/{}/logo.png".format(settings.MEDIA_ROOT, s.name)))

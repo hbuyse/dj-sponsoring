@@ -58,3 +58,5 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
+
+MEDIA_ROOT = '/tmp/dj_sponsoring/media/'
