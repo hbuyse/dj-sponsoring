@@ -1,4 +1,7 @@
 # coding=utf-8
+
+"""Settings for the tests."""
+
 from __future__ import absolute_import, unicode_literals
 
 import os
@@ -26,7 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     'django.contrib.sessions',
     "django.contrib.sites",
-    'tinymce',
+    'markdownx',
     "dj_sponsoring",
 ]
 
