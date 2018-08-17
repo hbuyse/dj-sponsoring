@@ -74,10 +74,11 @@ class TestSponsorDocumentModel(TestCase):
     def test_string_representation(self):
         d = {
             "sponsor": self.s,
+            "name": "Toto image name",
             "description": "Toto document description",
         }
         sd = SponsorDocument(**d)
-        self.assertEqual(str(sd), "{} - {}".format(sd.sponsor.name, sd.description))
+        self.assertEqual(str(sd), "{} - {}".format(sd.sponsor.name, sd.name))
 
     def test_verbose_name(self):
         self.assertEqual(str(SponsorDocument._meta.verbose_name), "sponsor document")
