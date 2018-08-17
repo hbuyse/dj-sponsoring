@@ -8,8 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 
-from tinymce import models as tinymce_models
-
 from .storage import OverwriteStorage
 
 
@@ -38,7 +36,7 @@ class Sponsor(models.Model):
     """Sponsor entry class handler"""
     name = models.CharField(_('Sponsor name'), max_length=128)
     summary = models.CharField(_('Sponsor summary'), max_length=512)
-    description = tinymce_models.HTMLField(_('Sponsor description'))
+    description = MarkdownxField(_('Sponsor description'))
     logo = models.ImageField(_('Sponsor logo'), storage=OverwriteStorage(), upload_to=sponsors_upload_to)
     url = models.URLField(_('Sponsor url'))
     created = models.DateTimeField('Sponsor creation date', auto_now_add=True)
