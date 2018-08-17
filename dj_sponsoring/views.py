@@ -41,7 +41,7 @@ class SponsorCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorUpdateView(PermissionRequiredMixin, UpdateView):
@@ -53,7 +53,7 @@ class SponsorUpdateView(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorDeleteView(PermissionRequiredMixin, DeleteView):
@@ -64,7 +64,7 @@ class SponsorDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsors-list')
+        return reverse('dj_sponsoring:sponsors-list')
 
 
 class SponsorImageListView(ListView):
@@ -114,7 +114,7 @@ class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorImageUpdateView(PermissionRequiredMixin, UpdateView):
@@ -133,7 +133,7 @@ class SponsorImageUpdateView(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorImageDeleteView(PermissionRequiredMixin, DeleteView):
@@ -144,7 +144,7 @@ class SponsorImageDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-images-list', kwargs={'pk': self.kwargs['pk']})
+        return reverse('dj_sponsoring:sponsor-images-list', kwargs={'pk': self.kwargs['pk']})
 
 
 class SponsorDocumentListView(ListView):
@@ -189,7 +189,7 @@ class SponsorDocumentCreateView(CreateView):
 
     def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorDocumentUpdateView(UpdateView):
@@ -201,7 +201,7 @@ class SponsorDocumentUpdateView(UpdateView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorDocumentDeleteView(DeleteView):
@@ -212,4 +212,4 @@ class SponsorDocumentDeleteView(DeleteView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-document-list')
+        return reverse('dj_sponsoring:sponsor-document-list')

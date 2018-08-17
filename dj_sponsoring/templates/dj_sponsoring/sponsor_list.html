@@ -6,7 +6,7 @@
       <div class="list-group">
     {% endif %}
 
-    <a href="{% url 'dj-sponsoring:sponsor-detail' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a href="{% url 'dj_sponsoring:sponsor-detail' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex row">
         <img class="col-md-2" class="mr-2" src="{{ o.logo.url }}" alt="{{ o }}">
         <div class="col-md-10 align-self-center">
@@ -21,6 +21,6 @@
     {% endif %}
   {% empty %}
   <p>No sponsors...</p>
-  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-create' %}">here</a></p>
+  <p>You can create one <a href="{% url 'dj_sponsoring:sponsor-create' %}">here</a></p>
   {% endfor %}
 {% endblock %}

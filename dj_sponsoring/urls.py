@@ -8,7 +8,7 @@ from django.urls import path
 from . import views
 
 
-app_name = 'dj-sponsoring'
+app_name = 'dj_sponsoring'
 urlpatterns = [
     path("",
          view=views.SponsorListView.as_view(),
