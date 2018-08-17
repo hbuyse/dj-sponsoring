@@ -6,7 +6,7 @@
     <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}" class="btn btn-primary btn-sm">Add image</a>
   </div>
 
-  <h1>Images des sponsors</h1>
+  <h1>{{ sponsor.name }}'s images</h1>
 
   {% for image in images %}
     {% ifchanged image.sponsor %}
@@ -32,7 +32,7 @@
       </div>
     {% endif %}
   {% empty %}
-  <p>No sponsors images... Toto</p>
-  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-create-image' sponsor.id %}">here</a></p>
+  <p>No images linked to this sponsor...</p>
+  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}">here</a></p>
   {% endfor %}
 {% endblock %}

@@ -1,0 +1,38 @@
+{% extends "dj_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="btn-group float-right" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-document-create' sponsor.id %}" class="btn btn-primary btn-sm">Add document</a>
+  </div>
+
+  <h1>{{ sponsor.name }}'s documents</h1>
+
+  {% for document in documents %}
+    {% ifchanged document.sponsor %}
+      {% if not forloop.first %}
+        </div>
+      {% endif %}
+
+      <h2 class=" mt-4">{{ document.sponsor }}</h2>
+      <div class="list-group">
+    {% endifchanged %}
+
+    <a href="{% url 'dj-sponsoring:sponsor-document-detail' document.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex row">
+        <img class="col-md-2" class="mr-2" src="{{ document.img.url }}" alt="{{ i.alt }}">
+        <div class="col-md-10 align-self-center">
+          <h5 class="mb-1">{{ document.alt }}</h5>
+          <p class="mb-1">{{ document.description }}</p>
+        </div>
+      </div>
+    </a>
+
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+  {% empty %}
+  <p>No documents linked to this sponsor...</p>
+  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-document-create' sponsor.id %}">here</a></p>
+  {% endfor %}
+{% endblock %}
