@@ -78,12 +78,13 @@ class SponsorDocument(models.Model):
     """Sponsor document class handler"""
     sponsor = models.ForeignKey('Sponsor', on_delete=models.CASCADE)
     document = models.FileField(_('Sponsor document'), upload_to=sponsors_upload_to)
+    name = models.CharField(_('Sponsor document name'), max_length=128)
     description = models.CharField(_('Sponsor document small description'), max_length=128)
     created = models.DateTimeField('Sponsor document creation date', auto_now_add=True)
     modified = models.DateTimeField('Sponsor document last modification date', auto_now=True)
 
     def __str__(self):
-        return "{} - {}".format(self.sponsor.name, self.description)
+        return "{} - {}".format(self.sponsor.name, self.name)
 
     class Meta:
         verbose_name = _("sponsor document")
