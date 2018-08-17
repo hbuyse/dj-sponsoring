@@ -13,6 +13,7 @@ from selenium.webdriver.support.ui import Select
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
+
 @tag('functional')
 class NewVisitorTest(unittest.TestCase):
     """."""

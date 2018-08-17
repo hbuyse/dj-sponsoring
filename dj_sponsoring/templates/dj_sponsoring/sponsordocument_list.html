@@ -1,0 +1,30 @@
+{% extends "dj_sponsoring/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  {% for o in objects %}
+    {% ifchanged o.sponsor %}
+      {% if not forloop.first %}
+        </div>
+      {% endif %}
+      <div class="list-group">  
+    {% endifchanged %}
+
+    <a href="{% url 'dj-sponsoring:sponsor-detail-document' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex row">
+        <img class="col-md-2" class="mr-2" src="{{ o.img.url }}" alt="{{ o.alt }}">
+        <div class="col-md-10 align-self-center">
+          <h5 class="mb-1">{{ o }}</h5>
+          <p class="mb-1">{{ o.description }}</p>
+        </div>
+      </div>
+    </a>
+
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+  {% empty %}
+  <p>No sponsors documents...</p>
+  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-document-create' sponsor.id %}">here</a></p>
+  {% endfor %}
+{% endblock %}

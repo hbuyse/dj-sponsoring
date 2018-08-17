@@ -1,17 +1,17 @@
 {% extends "dj_sponsoring/base.html" %}
 
 {% block content %}
-  {% for s in sponsors %}
+  {% for o in objects %}
     {% if forloop.first %}
       <div class="list-group">
     {% endif %}
 
-    <a href="{% url 'dj-sponsoring:sponsor-detail' s.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a href="{% url 'dj-sponsoring:sponsor-detail' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex row">
-        <img class="col-md-2" class="mr-2" src="{{ s.logo.url }}" alt="{{ s }}">
+        <img class="col-md-2" class="mr-2" src="{{ o.logo.url }}" alt="{{ o }}">
         <div class="col-md-10 align-self-center">
-          <h5 class="mb-1">{{ s }}</h5>
-          <p class="mb-1">{{ s.summary }}</p>
+          <h5 class="mb-1">{{ o }}</h5>
+          <p class="mb-1">{{ o.summary }}</p>
         </div>
       </div>
     </a>

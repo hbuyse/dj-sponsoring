@@ -24,7 +24,6 @@ class SponsorListView(ListView):
 
     model = Sponsor
     paginate_by = 10
-    context_object_name = 'sponsors'
 
 
 class SponsorDetailView(DetailView):
@@ -73,7 +72,6 @@ class SponsorImageListView(ListView):
 
     model = SponsorImage
     paginate_by = 10
-    context_object_name = 'images'
 
     def get_context_data(self, **kwargs):
         """."""
@@ -154,7 +152,6 @@ class SponsorDocumentListView(ListView):
 
     model = SponsorDocument
     paginate_by = 10
-    context_object_name = 'documents'
 
     def get_context_data(self, **kwargs):
         """."""
