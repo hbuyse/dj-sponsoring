@@ -65,7 +65,7 @@ class SponsorDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-list')
+        return reverse('dj-sponsoring:sponsors-list')
 
 
 class SponsorImageListView(ListView):
@@ -107,26 +107,31 @@ class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
     fields = ['alt', 'description', 'img']
     permission_required = 'dj_sponsoring.add_sponsorimage'
 
-    def get_initial(self):
-        """."""
-        initial = dict()
+    def form_valid(self, form):
+        """Validate the form."""
+        si = form.save(commit=False)
+        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
+        si.save()
+        return super().form_valid(form)
 
-        if 'pk' in self.kwargs:
-            initial['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
-
-        return initial
-
-    def get_success_url(self):
+    def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-detail-image', kwargs={'pk': self.object.id})
+        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorImageUpdateView(PermissionRequiredMixin, UpdateView):
     """SponsorImageUpdateView."""
 
     model = SponsorImage
-    fields = '__all__'
+    fields = ['alt', 'description', 'img']
     permission_required = 'dj_sponsoring.change_sponsorimage'
+
+    def form_valid(self, form):
+        """Validate the form."""
+        si = form.save(commit=False)
+        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
+        si.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
         """Get the URL after the success."""
@@ -141,13 +146,28 @@ class SponsorImageDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-image-list')
+        return reverse('dj-sponsoring:sponsor-images-list', kwargs={'pk': self.kwargs['pk']})
 
 
 class SponsorDocumentListView(ListView):
     """SponsorDocumentListView."""
 
     model = SponsorDocument
+    paginate_by = 10
+    context_object_name = 'documents'
+
+    def get_context_data(self, **kwargs):
+        """."""
+        context = super().get_context_data(**kwargs)
+        context['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self, *args, **kwargs):
+        """."""
+        qs = SponsorDocument.objects.all()
+        if 'pk' in self.kwargs:
+            qs = SponsorDocument.objects.filter(sponsor__id=self.kwargs['pk'])
+        return qs
 
 
 class SponsorDocumentDetailView(DetailView):
@@ -160,21 +180,19 @@ class SponsorDocumentCreateView(CreateView):
     """SponsorDocumentCreateView."""
 
     model = SponsorDocument
-    fields = '__all__'
+    fields = ['document', 'description']
     permission_required = 'dj_sponsoring.add_sponsordocument'
 
-    def get_initial(self):
-        """."""
-        initial = dict()
+    def form_valid(self, form):
+        """Validate the form."""
+        si = form.save(commit=False)
+        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
+        si.save()
+        return super().form_valid(form)
 
-        if 'pk' in self.kwargs:
-            initial['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
-
-        return initial
-
-    def get_success_url(self):
+    def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj-sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
+        return reverse('dj-sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
 
 
 class SponsorDocumentUpdateView(UpdateView):
