@@ -1,20 +1,14 @@
-{% extends "dj_sponsoring/base.html" %}
+<h1 class="float-left">{{ sponsor }}</h1>
 
-{% block content %}
-
-  <h1 class="float-left">{{ sponsor }}</h1>
-
-  {% if sponsor.logo %}
-    <div class="col-1 float-left">
-      <img class="d-block w-100" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
-    </div>
-    <div class="col-11 float-right">
-      <p>{{ sponsor.summary }}</p>
-      <p>{{ sponsor.description_md|safe }}</p>
-    <div>
-  {% else %}
+{% if sponsor.logo %}
+  <div class="col-1 float-left">
+    <img class="d-block w-100" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}'s logo">
+  </div>
+  <div class="col-11 float-right">
     <p>{{ sponsor.summary }}</p>
     <p>{{ sponsor.description_md|safe }}</p>
-  {% endif %}
-
-{% endblock %}
+  <div>
+{% else %}
+  <p>{{ sponsor.summary }}</p>
+  <p>{{ sponsor.description_md|safe }}</p>
+{% endif %}

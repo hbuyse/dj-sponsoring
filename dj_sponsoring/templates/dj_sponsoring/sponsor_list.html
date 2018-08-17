@@ -1,26 +1,22 @@
-{% extends "dj_sponsoring/base.html" %}
+{% for o in objects %}
+  {% if forloop.first %}
+    <div class="list-group">
+  {% endif %}
 
-{% block content %}
-  {% for o in objects %}
-    {% if forloop.first %}
-      <div class="list-group">
-    {% endif %}
-
-    <a href="{% url 'dj_sponsoring:sponsor-detail' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex row">
-        <img class="col-md-2" class="mr-2" src="{{ o.logo.url }}" alt="{{ o }}">
-        <div class="col-md-10 align-self-center">
-          <h5 class="mb-1">{{ o }}</h5>
-          <p class="mb-1">{{ o.summary }}</p>
-        </div>
+  <a href="{% url 'dj_sponsoring:sponsor-detail' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex row">
+      <img class="col-md-2" class="mr-2" src="{{ o.logo.url }}" alt="{{ o }}">
+      <div class="col-md-10 align-self-center">
+        <h5 class="mb-1">{{ o }}</h5>
+        <p class="mb-1">{{ o.summary }}</p>
       </div>
-    </a>
+    </div>
+  </a>
 
-    {% if forloop.last %}
-      </div>
-    {% endif %}
-  {% empty %}
+  {% if forloop.last %}
+    </div>
+  {% endif %}
+{% empty %}
   <p>No sponsors...</p>
   <p>You can create one <a href="{% url 'dj_sponsoring:sponsor-create' %}">here</a></p>
-  {% endfor %}
-{% endblock %}
+{% endfor %}

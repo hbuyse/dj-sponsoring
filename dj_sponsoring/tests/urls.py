@@ -10,5 +10,4 @@ from django.urls import path
 
 urlpatterns = [
     path('', include('dj_sponsoring.urls', namespace='dj_sponsoring')),
-    path('tinymce/', include('tinymce.urls')),
 ]
