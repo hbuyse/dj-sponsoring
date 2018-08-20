@@ -107,9 +107,7 @@ class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """Validate the form."""
-        si = form.save(commit=False)
-        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
-        si.save()
+        form.instance.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self, **kwargs):
@@ -126,9 +124,7 @@ class SponsorImageUpdateView(PermissionRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         """Validate the form."""
-        si = form.save(commit=False)
-        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
-        si.save()
+        form.instance.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -182,9 +178,7 @@ class SponsorDocumentCreateView(CreateView):
 
     def form_valid(self, form):
         """Validate the form."""
-        si = form.save(commit=False)
-        si.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
-        si.save()
+        form.instance.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self, **kwargs):
