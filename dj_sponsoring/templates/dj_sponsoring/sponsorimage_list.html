@@ -1,25 +1,21 @@
-{% for i in images %}
-  {% ifchanged i.sponsor %}
-    {% if not forloop.first %}
-      </div>
-    {% endif %}
-    <div class="list-group">
-  {% endifchanged %}
+{% for i in sponsorimage_list %}
+  {% if forloop.first %}
+    <ul>
+  {% endif %}
 
-  <a href="{% url 'dj_sponsoring:sponsor-detail-image' i.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex row">
-      <img class="col-md-2" class="mr-2" src="{{ i.img.url }}" alt="{{ i.alt }}">
-      <div class="col-md-10 align-self-center">
-        <h5 class="mb-1">{{ i }}</h5>
-        <p class="mb-1">{{ i.description }}</p>
-      </div>
-    </div>
-  </a>
+  <li>
+      <a href="{% url 'dj_sponsoring:sponsor-image-detail' i.id %}">{{ i }}</a>
+      <p>{{ i.description }}</p>
+      {% if i.img %}
+        <img src="{{ i.img.url }}" alt="{{ i.alt }}">
+      {% endif %}
+    </a>
+  </li>
 
   {% if forloop.last %}
-    </div>
+    </ul>
   {% endif %}
 {% empty %}
-  <p>No sponsors images...</p>
+  <p>No images for this sponsor...</p>
   <p>You can create one <a href="{% url 'dj_sponsoring:sponsor-image-create' sponsor.id %}">here</a></p>
 {% endfor %}

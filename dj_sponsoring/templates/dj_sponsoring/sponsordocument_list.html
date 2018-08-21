@@ -1,25 +1,16 @@
-{% for o in objects %}
-  {% ifchanged o.sponsor %}
-    {% if not forloop.first %}
-      </div>
-    {% endif %}
-    <div class="list-group">
-  {% endifchanged %}
+{% for d in sponsordocument_list %}
+  {% if forloop.first %}
+    <ul>
+  {% endif %}
 
-  <a href="{% url 'dj_sponsoring:sponsor-detail-document' o.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex row">
-      <img class="col-md-2" class="mr-2" src="{{ o.img.url }}" alt="{{ o.alt }}">
-      <div class="col-md-10 align-self-center">
-        <h5 class="mb-1">{{ o }}</h5>
-        <p class="mb-1">{{ o.description }}</p>
-      </div>
-    </div>
-  </a>
+  <li>
+      <a href="{% url 'dj_sponsoring:sponsor-document-detail' d.id %}">{{ d.name }}</a>
+  </li>
 
   {% if forloop.last %}
-    </div>
+    </ul>
   {% endif %}
 {% empty %}
-  <p>No sponsors documents...</p>
+  <p>No documents for this sponsor...</p>
   <p>You can create one <a href="{% url 'dj_sponsoring:sponsor-document-create' sponsor.id %}">here</a></p>
 {% endfor %}

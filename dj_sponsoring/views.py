@@ -190,7 +190,7 @@ class SponsorDocumentUpdateView(UpdateView):
     """SponsorDocumentUpdateView."""
 
     model = SponsorDocument
-    fields = '__all__'
+    fields = ['document', 'description']
     permission_required = 'dj_sponsoring.change_sponsordocument'
 
     def get_success_url(self):

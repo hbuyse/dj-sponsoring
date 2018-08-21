@@ -3,7 +3,7 @@
 
 """Tests the views."""
 
-from dj_sponsoring.models import Sponsor
+from dj_sponsoring.models import Sponsor, SponsorImage, SponsorDocument
 
 from django.conf import settings
 from django.contrib.auth.models import Permission, User
@@ -17,6 +17,18 @@ import os.path
 class TestSponsorListView(TestCase):
     """Tests."""
 
+    def setUp(self):
+        """Tests."""
+        self.dict = {
+            'name': 'Toto',
+            'summary': 'summary',
+            'description': 'description',
+            'url': 'http://www.google.fr',
+            'logo': SimpleUploadedFile(name='index.png',
+                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content_type='image/png')
+        }
+
     def test_sponsors_list_view_empty(self):
         """Tests."""
         r = self.client.get(reverse('dj_sponsoring:sponsors-list'))
@@ -25,10 +37,14 @@ class TestSponsorListView(TestCase):
 
     def test_sponsors_list_view_one_sponsor(self):
         """Tests."""
-        Sponsor.objects.create(name="Toto")
-        r = self.client.get(reverse('dj_sponsoring:sponsor-detail', kwargs={'pk': 1}))
+        Sponsor.objects.create(**self.dict)
+        r = self.client.get(reverse('dj_sponsoring:sponsors-list'))
         self.assertEqual(r.status_code, 200)
+        self.assertEqual(str(r.content).count('<ul>'), 1)
+        self.assertEqual(str(r.content).count('<li>'), 1)
         self.assertIn("Toto", str(r.content))
+        self.assertEqual(str(r.content).count('</li>'), 1)
+        self.assertEqual(str(r.content).count('</ul>'), 1)
 
 
 class TestSponsorDetailView(TestCase):
@@ -300,3 +316,45 @@ class TestSponsorDeleteView(TestCase):
         self.assertEqual(Sponsor.objects.count(), 0)
         self.assertEqual(r.status_code, 302)
         self.assertEqual(r.url, reverse('dj_sponsoring:sponsors-list'))
+
+
+class TestSponsorImageListView(TestCase):
+    """Tests."""
+
+    def setUp(self):
+        """Setup for TestSponsorImageListView."""
+        self.sponsor = Sponsor.objects.create(name="Toto")
+
+    def test_sponsor_images_list_view_empty(self):
+        """Tests."""
+        r = self.client.get(reverse('dj_sponsoring:sponsor-images-list', kwargs={'pk': self.sponsor.id}))
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("No images for this sponsor...", str(r.content))
+
+    def test_sponsor_image_list_view_one_image(self):
+        """Tests."""
+        si = SponsorImage.objects.create(sponsor=self.sponsor, alt="Toto")
+        r = self.client.get(reverse('dj_sponsoring:sponsor-images-list', kwargs={'pk': self.sponsor.id}))
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("Toto", str(r.content))
+
+
+class TestSponsorDocumentListView(TestCase):
+    """Tests."""
+
+    def setUp(self):
+        """Setup for TestSponsorImageListView."""
+        self.sponsor = Sponsor.objects.create(name="Toto")
+
+    def test_sponsor_images_list_view_empty(self):
+        """Tests."""
+        r = self.client.get(reverse('dj_sponsoring:sponsor-documents-list', kwargs={'pk': self.sponsor.id}))
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("No documents for this sponsor...", str(r.content))
+
+    def test_sponsor_image_list_view_one_image(self):
+        """Tests."""
+        sd = SponsorDocument.objects.create(sponsor=self.sponsor, name="Toto", description="My description")
+        r = self.client.get(reverse('dj_sponsoring:sponsor-documents-list', kwargs={'pk': self.sponsor.id}))
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("Toto", str(r.content))
