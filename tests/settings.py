@@ -24,7 +24,7 @@ DATABASES = {
     }
 }
 
-ROOT_URLCONF = "dj_sponsoring.tests.urls"
+ROOT_URLCONF = "tests.urls"
 
 INSTALLED_APPS = [
     "django.contrib.auth",

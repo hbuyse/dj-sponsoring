@@ -25,7 +25,7 @@ class TestSponsorListView(TestCase):
             'description': 'description',
             'url': 'http://www.google.fr',
             'logo': SimpleUploadedFile(name='index.png',
-                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content=open("tests/index.png", 'rb').read(),
                                        content_type='image/png')
         }
 
@@ -75,7 +75,7 @@ class TestSponsorCreateView(TestCase):
             'description': 'description',
             'url': 'http://www.google.fr',
             'logo': SimpleUploadedFile(name='index.png',
-                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content=open("tests/index.png", 'rb').read(),
                                        content_type='image/png')
         }
 
@@ -151,7 +151,7 @@ class TestSponsorUpdateView(TestCase):
             'description': 'My description',
             'url': 'http://www.google.fr',
             'logo': SimpleUploadedFile(name='index.png',
-                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content=open("tests/index.png", 'rb').read(),
                                        content_type='image/png')
         }
         self.sponsor = Sponsor.objects.create(**self.dict)
@@ -215,7 +215,7 @@ class TestSponsorUpdateView(TestCase):
         self.user.user_permissions.add(Permission.objects.get(name='Can change sponsor'))
         self.dict['name'] = 'Toto new'
         self.dict['logo'] = SimpleUploadedFile(name='index.png',
-                                               content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                               content=open("tests/index.png", 'rb').read(),
                                                content_type='image/png')
 
         r = self.client.post(reverse('dj_sponsoring:sponsor-update', kwargs={'pk': self.sponsor.id}), data=self.dict)
@@ -238,7 +238,7 @@ class TestSponsorDeleteView(TestCase):
             'description': 'My description',
             'url': 'http://www.google.fr',
             'logo': SimpleUploadedFile(name='index.png',
-                                       content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                       content=open("tests/index.png", 'rb').read(),
                                        content_type='image/png')
         }
         self.sponsor = Sponsor.objects.create(**self.dict)
@@ -347,7 +347,7 @@ class TestSponsorImageCreateView(TestCase):
         self.sponsor = Sponsor.objects.create(name="Toto")
         self.dict = {
             'img': SimpleUploadedFile(name='index.png',
-                                      content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                      content=open("tests/index.png", 'rb').read(),
                                       content_type='image/png'),
             'alt': "My alt",
             'description': "My description"
@@ -423,7 +423,7 @@ class TestSponsorImageUpdateView(TestCase):
         self.dict = {
             'sponsor': sponsor,
             'img': SimpleUploadedFile(name='index.png',
-                                      content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                      content=open("tests/index.png", 'rb').read(),
                                       content_type='image/png'),
             'alt': "My alt",
             'description': "My description"
@@ -485,7 +485,7 @@ class TestSponsorImageUpdateView(TestCase):
         self.user.user_permissions.add(Permission.objects.get(name='Can change sponsor image'))
         self.dict['alt'] = 'My new alternative text'
         self.dict['img'] = SimpleUploadedFile(name='index.png',
-                                              content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                              content=open("tests/index.png", 'rb').read(),
                                               content_type='image/png')
 
         r = self.client.post(reverse('dj_sponsoring:sponsor-image-update',
@@ -507,7 +507,7 @@ class TestSponsorImageDeleteView(TestCase):
         self.dict = {
             'sponsor': sponsor,
             'img': SimpleUploadedFile(name='index.png',
-                                      content=open("dj_sponsoring/tests/index.png", 'rb').read(),
+                                      content=open("tests/index.png", 'rb').read(),
                                       content_type='image/png'),
             'alt': "My alt",
             'description': "My description"
@@ -618,7 +618,7 @@ class TestSponsorFileCreateView(TestCase):
         self.sponsor = Sponsor.objects.create(name="Toto")
         self.dict = {
             'file': SimpleUploadedFile(name='file.txt',
-                                       content=open("dj_sponsoring/tests/file.txt", 'rb').read(),
+                                       content=open("tests/file.txt", 'rb').read(),
                                        content_type='text/plain'),
             'name': "My name",
             'description': "My description"
@@ -694,7 +694,7 @@ class TestSponsorFileUpdateView(TestCase):
         self.dict = {
             'sponsor': sponsor,
             'file': SimpleUploadedFile(name='file.txt',
-                                       content=open("dj_sponsoring/tests/file.txt", 'rb').read(),
+                                       content=open("tests/file.txt", 'rb').read(),
                                        content_type='text/plain'),
             'name': "My name",
             'description': "My description"
@@ -756,7 +756,7 @@ class TestSponsorFileUpdateView(TestCase):
         self.user.user_permissions.add(Permission.objects.get(name='Can change sponsor file'))
         self.dict['name'] = 'My new name'
         self.dict['file'] = SimpleUploadedFile(name='file.txt',
-                                               content=open("dj_sponsoring/tests/file.txt", 'rb').read(),
+                                               content=open("tests/file.txt", 'rb').read(),
                                                content_type='text/plain'),
 
         r = self.client.post(reverse('dj_sponsoring:sponsor-file-update',
@@ -778,7 +778,7 @@ class TestSponsorFileDeleteView(TestCase):
         self.dict = {
             'sponsor': sponsor,
             'file': SimpleUploadedFile(name='file.txt',
-                                       content=open("dj_sponsoring/tests/file.txt", 'rb').read(),
+                                       content=open("tests/file.txt", 'rb').read(),
                                        content_type='text/plain'),
             'name': "My name",
             'description': "My description"
