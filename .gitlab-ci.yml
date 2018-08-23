@@ -28,6 +28,12 @@ python36:
     - tox -e py36-django-20
 
 dist:
+  image: python:3.6
   stage: package
+  only:
+    - tags
   script:
     - python setup.py sdist
+  artifacts:
+    paths:
+      - "dist/*"
