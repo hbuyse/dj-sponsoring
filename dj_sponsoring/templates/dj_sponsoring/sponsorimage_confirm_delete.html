@@ -1,4 +1,4 @@
-<h1 class="float-left">{{ object }}</h1>
+<h1 class="float-left">{{ sponsorimage }}</h1>
 
 <form method="post">
   {% csrf_token %}
@@ -6,4 +6,4 @@
   <button class="btn btn-primary btn-sm" type="submit">Confirm</button>
 </form>
 
-<img class="d-block w-100" src="{{ object.img.url }}" alt="{{ object.alt }}">
+<img class="d-block w-100" src="{{ sponsorimage.img.url }}" alt="{{ sponsorimage.alt }}">

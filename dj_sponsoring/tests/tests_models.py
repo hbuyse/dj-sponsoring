@@ -8,7 +8,7 @@ test_dj-sponsoring
 Tests for `dj-sponsoring` models module.
 """
 
-from dj_sponsoring.models import Sponsor, SponsorDocument, SponsorImage, sponsors_upload_to
+from dj_sponsoring.models import Sponsor, SponsorFile, SponsorImage, sponsors_upload_to
 
 from django.test import TestCase
 
@@ -65,7 +65,7 @@ class TestSponsorModel(TestCase):
         self.assertIsNone(sponsors_upload_to(str(), filename))
 
 
-class TestSponsorDocumentModel(TestCase):
+class TestSponsorFileModel(TestCase):
     """docstring for TestSponsorModel"""
 
     def setUp(self):
@@ -75,25 +75,25 @@ class TestSponsorDocumentModel(TestCase):
         d = {
             "sponsor": self.s,
             "name": "Toto image name",
-            "description": "Toto document description",
+            "description": "Toto file description",
         }
-        sd = SponsorDocument(**d)
+        sd = SponsorFile(**d)
         self.assertEqual(str(sd), "{} - {}".format(sd.sponsor.name, sd.name))
 
     def test_verbose_name(self):
-        self.assertEqual(str(SponsorDocument._meta.verbose_name), "sponsor document")
+        self.assertEqual(str(SponsorFile._meta.verbose_name), "sponsor file")
 
     def test_verbose_name_plural(self):
-        self.assertEqual(str(SponsorDocument._meta.verbose_name_plural), "sponsor documents")
+        self.assertEqual(str(SponsorFile._meta.verbose_name_plural), "sponsor files")
 
     def test_sponsors_logo_upload_to_cb(self):
         d = {
             "sponsor": self.s,
             "description": "Toto is in da place!",
         }
-        sd = SponsorDocument(**d)
+        sd = SponsorFile(**d)
         filename = "hello.png"
-        self.assertEqual(sponsors_upload_to(sd, filename), "sponsors/Toto/document/hello.png")
+        self.assertEqual(sponsors_upload_to(sd, filename), "sponsors/Toto/files/hello.png")
 
 
 class TestSponsorImageModel(TestCase):
@@ -128,4 +128,4 @@ class TestSponsorImageModel(TestCase):
         }
         si = SponsorImage(**d)
         filename = "hello.png"
-        self.assertEqual(sponsors_upload_to(si, filename), "sponsors/Toto/img/hello.png")
+        self.assertEqual(sponsors_upload_to(si, filename), "sponsors/Toto/images/hello.png")

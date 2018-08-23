@@ -1,6 +1,8 @@
-<h1>{{ object }}</h1>
+<h1>{{ sponsorimage }}</h1>
 
-<img class="d-block w-100" src="{{ object.img.url }}" alt="{{ object.alt }}">
+{% if sponsorimage.img %}
+  <img class="d-block w-100" src="{{ sponsorimage.img.url }}" alt="{{ sponsorimage.alt }}">
+{% endif %}
 
-<p>Alternative text: {{ object.alt }}</p>
-<p>Description: {{ object.description }}</p>
+<p>Alternative text: {{ sponsorimage.alt }}</p>
+<p>Description: {{ sponsorimage.description }}</p>

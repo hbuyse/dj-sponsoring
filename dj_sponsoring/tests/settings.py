@@ -5,6 +5,8 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import shutil
+
 
 DEBUG = False
 USE_TZ = True
@@ -63,3 +65,9 @@ MIDDLEWARE = (
 )
 
 MEDIA_ROOT = '/tmp/dj_sponsoring/media/'
+
+# Remove MEDIA_ROOT to test on clean folder
+try:
+    shutil.rmtree("/tmp/dj_sponsoring/media")
+except OSError as e:
+    pass

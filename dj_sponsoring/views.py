@@ -14,7 +14,7 @@ from django.views.generic import (
 
 from .models import (
     Sponsor,
-    SponsorDocument,
+    SponsorFile,
     SponsorImage,
 )
 
@@ -143,10 +143,10 @@ class SponsorImageDeleteView(PermissionRequiredMixin, DeleteView):
         return reverse('dj_sponsoring:sponsor-images-list', kwargs={'pk': self.kwargs['pk']})
 
 
-class SponsorDocumentListView(ListView):
-    """SponsorDocumentListView."""
+class SponsorFileListView(ListView):
+    """SponsorFileListView."""
 
-    model = SponsorDocument
+    model = SponsorFile
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -157,24 +157,24 @@ class SponsorDocumentListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         """."""
-        qs = SponsorDocument.objects.all()
+        qs = SponsorFile.objects.all()
         if 'pk' in self.kwargs:
-            qs = SponsorDocument.objects.filter(sponsor__id=self.kwargs['pk'])
+            qs = SponsorFile.objects.filter(sponsor__id=self.kwargs['pk'])
         return qs
 
 
-class SponsorDocumentDetailView(DetailView):
-    """SponsorDocumentDetailView."""
+class SponsorFileDetailView(DetailView):
+    """SponsorFileDetailView."""
 
-    model = SponsorDocument
+    model = SponsorFile
 
 
-class SponsorDocumentCreateView(CreateView):
-    """SponsorDocumentCreateView."""
+class SponsorFileCreateView(PermissionRequiredMixin, CreateView):
+    """SponsorFileCreateView."""
 
-    model = SponsorDocument
-    fields = ['document', 'description']
-    permission_required = 'dj_sponsoring.add_sponsordocument'
+    model = SponsorFile
+    fields = ['name', 'description', 'file']
+    permission_required = 'dj_sponsoring.add_sponsorfile'
 
     def form_valid(self, form):
         """Validate the form."""
@@ -183,27 +183,27 @@ class SponsorDocumentCreateView(CreateView):
 
     def get_success_url(self, **kwargs):
         """Get the URL after the success."""
-        return reverse('dj_sponsoring:sponsor-image-detail', kwargs={'pk': self.object.id})
+        return reverse('dj_sponsoring:sponsor-file-detail', kwargs={'pk': self.object.id})
 
 
-class SponsorDocumentUpdateView(UpdateView):
-    """SponsorDocumentUpdateView."""
+class SponsorFileUpdateView(PermissionRequiredMixin, UpdateView):
+    """SponsorFileUpdateView."""
 
-    model = SponsorDocument
-    fields = ['document', 'description']
-    permission_required = 'dj_sponsoring.change_sponsordocument'
-
-    def get_success_url(self):
-        """Get the URL after the success."""
-        return reverse('dj_sponsoring:sponsor-document-detail', kwargs={'pk': self.object.id})
-
-
-class SponsorDocumentDeleteView(DeleteView):
-    """SponsorDocumentDeleteView."""
-
-    model = SponsorDocument
-    permission_required = 'dj_sponsoring.delete_sponsordocument'
+    model = SponsorFile
+    fields = ['name', 'description', 'file']
+    permission_required = 'dj_sponsoring.change_sponsorfile'
 
     def get_success_url(self):
         """Get the URL after the success."""
-        return reverse('dj_sponsoring:sponsor-document-list')
+        return reverse('dj_sponsoring:sponsor-file-detail', kwargs={'pk': self.object.id})
+
+
+class SponsorFileDeleteView(PermissionRequiredMixin, DeleteView):
+    """SponsorFileDeleteView."""
+
+    model = SponsorFile
+    permission_required = 'dj_sponsoring.delete_sponsorfile'
+
+    def get_success_url(self):
+        """Get the URL after the success."""
+        return reverse('dj_sponsoring:sponsor-files-list', kwargs={'pk': self.kwargs['pk']})

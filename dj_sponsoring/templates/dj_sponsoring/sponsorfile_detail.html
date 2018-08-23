@@ -1,0 +1,8 @@
+<h1>{{ sponsorfile }}</h1>
+
+<p>Name: {{ sponsorfile.name }}</p>
+<p>Description: {{ sponsorfile.description }}</p>
+
+{% if sponsorfile.file %}
+  <a href="{{ sponsorfile.file.url }}">Link</a>
+{% endif %}

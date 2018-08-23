@@ -18,18 +18,18 @@ def sponsors_upload_to(instance, filename):
     If the file instance is a Sponsor, the file has to be the logo so it will be uploaded to
         MEDIA_ROOT/sponsors/<sponsor_name>/logo<ext>.
     If the file instance is a SponsorImage, the file has to be an image so it will be uploaded to
-        MEDIA_ROOT/sponsors/<sponsor_name>/img/<filename>.
-    If the file instance is a SponsorDocument, the file has to be a document so it will be uploaded to
-        MEDIA_ROOT/sponsors/<sponsor_name>/document/<filename>.
+        MEDIA_ROOT/sponsors/<sponsor_name>/images/<filename>.
+    If the file instance is a SponsorFile, the file has to be a file so it will be uploaded to
+        MEDIA_ROOT/sponsors/<sponsor_name>/files/<filename>.
     """
     path = None
     if isinstance(instance, Sponsor):
         basename, ext = os.path.splitext(filename)
         path = os.path.join('sponsors', instance.name, 'logo{}'.format(ext))
     elif isinstance(instance, SponsorImage):
-        path = os.path.join('sponsors', instance.sponsor.name, 'img', filename)
-    elif isinstance(instance, SponsorDocument):
-        path = os.path.join('sponsors', instance.sponsor.name, 'document', filename)
+        path = os.path.join('sponsors', instance.sponsor.name, 'images', filename)
+    elif isinstance(instance, SponsorFile):
+        path = os.path.join('sponsors', instance.sponsor.name, 'files', filename)
 
     return path
 
@@ -83,15 +83,15 @@ class SponsorImage(models.Model):
         ordering = ("sponsor", "created")
 
 
-class SponsorDocument(models.Model):
-    """Sponsor document class handler."""
+class SponsorFile(models.Model):
+    """Sponsor file class handler."""
 
     sponsor = models.ForeignKey('Sponsor', on_delete=models.CASCADE)
-    document = models.FileField(_('Sponsor document'), upload_to=sponsors_upload_to)
-    name = models.CharField(_('Sponsor document name'), max_length=128)
-    description = models.CharField(_('Sponsor document small description'), max_length=128)
-    created = models.DateTimeField('Sponsor document creation date', auto_now_add=True)
-    modified = models.DateTimeField('Sponsor document last modification date', auto_now=True)
+    file = models.FileField(_('Sponsor file'), upload_to=sponsors_upload_to)
+    name = models.CharField(_('Sponsor file name'), max_length=128)
+    description = models.CharField(_('Sponsor file small description'), max_length=128)
+    created = models.DateTimeField('Sponsor file creation date', auto_now_add=True)
+    modified = models.DateTimeField('Sponsor file last modification date', auto_now=True)
 
     def __str__(self):
         """Get name of the object."""
@@ -100,6 +100,6 @@ class SponsorDocument(models.Model):
     class Meta:
         """Meta class."""
 
-        verbose_name = _("sponsor document")
-        verbose_name_plural = _("sponsor documents")
+        verbose_name = _("sponsor file")
+        verbose_name_plural = _("sponsor files")
         ordering = ("sponsor", "name", "created")

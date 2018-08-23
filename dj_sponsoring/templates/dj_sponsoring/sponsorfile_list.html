@@ -1,0 +1,16 @@
+{% for d in sponsorfile_list %}
+  {% if forloop.first %}
+    <ul>
+  {% endif %}
+
+  <li>
+      <a href="{% url 'dj_sponsoring:sponsor-file-detail' d.id %}">{{ d.name }}</a>
+  </li>
+
+  {% if forloop.last %}
+    </ul>
+  {% endif %}
+{% empty %}
+  <p>No files for this sponsor...</p>
+  <p>You can create one <a href="{% url 'dj_sponsoring:sponsor-file-create' sponsor.id %}">here</a></p>
+{% endfor %}
