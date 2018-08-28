@@ -1,8 +1,28 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
+
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">Sponsors list</li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title_buttons %}
+  <div class="btn-group float-right" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-create' %}" class="btn btn-primary btn-sm">Add sponsor</a>
+  </div>
+{% endblock %}
+  
+{% block page_title %}
+  Sponsors list
+{% endblock %}
+
+
 {% block content %}
-  {% for s in sponsors %}
+  {% for s in sponsor_list %}
     {% if forloop.first %}
       <div class="list-group">
     {% endif %}

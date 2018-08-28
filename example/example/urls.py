@@ -21,10 +21,10 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 urlpatterns = [
-    path('accounts/login', auth_views.login, name="login"),
-    path('accounts/logout', auth_views.logout, name="logout"),
-    path('admin/', admin.site.urls),
-    path('sponsors/', include('dj_sponsoring.urls', namespace='dj-sponsoring')),
+    path('login', auth_views.login, name="login"),
+    path('logout', auth_views.logout, name="logout"),
+    path('', include('dj_sponsoring.urls', namespace='dj-sponsoring')),
+    path('admin/', admin.site.urls, name='admin'),
     path('markdownx/', include('markdownx.urls')),
 ]
 

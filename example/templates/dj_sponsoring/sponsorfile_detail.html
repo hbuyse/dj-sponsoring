@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsorfile.sponsor.id %}">{{ sponsorfile.sponsor }}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-files-list' sponsorfile.sponsor.id %}">Files list</a></li>
+      <li class="breadcrumb-item active">{{ sponsorfile }}</a></li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title_buttons %}
+  <div class="btn-group float-right" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-file-update' sponsorfile.id %}" class="btn btn-primary btn-sm">Update</a>
+    <a href="{% url 'dj-sponsoring:sponsor-file-delete' sponsorfile.id %}" class="btn btn-danger btn-sm">Delete</a>
+  </div>
+{% endblock %}
+
+{% block page_title %}
+  {{ sponsorfile }}
+{% endblock %}
+
+{% block content %}
+  <p>Description: {{ sponsorfile.description }}</p>
+{% endblock %}

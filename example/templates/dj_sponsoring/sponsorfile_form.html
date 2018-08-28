@@ -5,10 +5,12 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsorfile.sponsor.id %}">{{ sponsorfile.sponsor }}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-files-list' sponsorfile.id %}">Files list</a></li>
       {% if 'create' in request.path %}
         <li class="breadcrumb-item active" aria-current="page">Creation</a></li>
       {% elif 'update' in request.path %}
-        <li class="breadcrumb-item active" aria-current="page">Update {{ sponsor }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update {{ sponsorfile.name }}</a></li>
       {% endif %}
     </ol>
   </nav>
@@ -16,9 +18,9 @@
 
 {% block page_title %}
   {% if 'create' in request.path %}
-    Sponsor creation
+    Sponsor's file creation
   {% elif 'update' in request.path %}
-    Update sponsor '{{ sponsor }}'
+    Update sponsor file '{{ sponsorfile.name }}'
   {% endif %}
 {% endblock %}
 

@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ sponsor }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Deletion</a></li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title %}
+  {{ sponsor }} deletion
+{% endblock %}
+
 {% block content %}
 <form method="post">
   {% csrf_token %}

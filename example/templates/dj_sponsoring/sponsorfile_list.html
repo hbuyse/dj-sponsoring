@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsor.id %}">{{ sponsor }}</a></li>
+      <li class="breadcrumb-item active">Files list</li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title %}
+  {{ sponsor }}'s files
+{% endblock %}
+
+{% block page_title_buttons %}
+  <div class="btn-group float-right" role="group">
+    <a href="{% url 'dj-sponsoring:sponsor-file-create' sponsor.id %}" class="btn btn-primary btn-sm">Add file</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% for file in files %}
+    {% if forloop.first %}
+      <div class="list-group">
+    {% endif %}
+
+    <a href="{% url 'dj-sponsoring:sponsor-file-detail' file.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex row">
+        <img class="col-md-2" class="mr-2" src="{{ file.img.url }}" alt="{{ i.alt }}">
+        <div class="col-md-10 align-self-center">
+          <h5 class="mb-1">{{ file.alt }}</h5>
+          <p class="mb-1">{{ file.description }}</p>
+        </div>
+      </div>
+    </a>
+
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+  {% empty %}
+    <p>No files linked to this sponsor...</p>
+    <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-file-create' sponsor.id %}">here</a></p>
+  {% endfor %}
+{% endblock %}
