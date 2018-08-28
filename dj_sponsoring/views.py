@@ -105,6 +105,12 @@ class SponsorImageCreateView(PermissionRequiredMixin, CreateView):
     fields = ['alt', 'description', 'img']
     permission_required = 'dj_sponsoring.add_sponsorimage'
 
+    def get_context_data(self, **kwargs):
+        """."""
+        context = super().get_context_data(**kwargs)
+        context['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
+        return context
+
     def form_valid(self, form):
         """Validate the form."""
         form.instance.sponsor = Sponsor.objects.get(id=self.kwargs['pk'])
@@ -175,6 +181,12 @@ class SponsorFileCreateView(PermissionRequiredMixin, CreateView):
     model = SponsorFile
     fields = ['name', 'description', 'file']
     permission_required = 'dj_sponsoring.add_sponsorfile'
+
+    def get_context_data(self, **kwargs):
+        """."""
+        context = super().get_context_data(**kwargs)
+        context['sponsor'] = Sponsor.objects.get(id=self.kwargs['pk'])
+        return context
 
     def form_valid(self, form):
         """Validate the form."""
