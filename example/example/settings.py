@@ -15,15 +15,39 @@ import os
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            # exact format is not important, this is the minimum information
+            'format': '%(asctime)s - %(name)-12s:%(lineno)d - %(levelname)s - %(message)s',
+        },
+        'json': {
+            'format': '%(asctime)s' \
+                      '%(name)s' \
+                      '%(funcName)s' \
+                      '%(lineno)s' \
+                      '%(levelname)s' \
+                      '%(message)s',
+            'class': 'pythonjsonlogger.jsonlogger.JsonFormatter'
+        }
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'formatter': 'console',
         },
+        'file': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'INFO',
+            'formatter': 'json',
+            'filename': 'logging.json',
+            'maxBytes': 10485760,
+            'backupCount': 5
+        }
     },
     'loggers': {
-        'django': {
-            'handlers': ['console'],
+        '': {
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'handlers': ['console', 'file']
         },
     },
 }
@@ -47,6 +71,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'markdownx',
     'bootstrap4',
+    'django_icons',
 
     'django.contrib.admin',
     'django.contrib.auth',
