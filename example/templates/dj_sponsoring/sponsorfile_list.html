@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
+{% load icons %}
+{% load sponsoring %}
 
 {% block path %}
   <nav aria-label="breadcrumb">
@@ -22,20 +24,20 @@
 {% endblock %}
 
 {% block content %}
-  {% for file in files %}
+  {% for file in sponsorfile_list %}
     {% if forloop.first %}
-      <div class="list-group">
+      <ul class="list-group">
     {% endif %}
 
-    <a href="{% url 'dj-sponsoring:sponsor-file-detail' file.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex row">
-        <img class="col-md-2" class="mr-2" src="{{ file.img.url }}" alt="{{ i.alt }}">
-        <div class="col-md-10 align-self-center">
-          <h5 class="mb-1">{{ file.alt }}</h5>
-          <p class="mb-1">{{ file.description }}</p>
-        </div>
+    <li class="list-group-item">
+      <div class="btn-group float-right" role="group">
+        <a href="{% url 'dj-sponsoring:sponsor-file-update' file.id %}" class="btn btn-primary btn-sm">Update file</a>
+        <a href="{% url 'dj-sponsoring:sponsor-file-delete' file.id %}" class="btn btn-danger btn-sm">Delete file</a>
       </div>
-    </a>
+      <i class="fas fa-{{ file.file|get_icon_extension }}"></i>
+      {{ file.name }} ({{ file.file|filename }})<br/>
+      {{ file.description }}
+    </li>
 
     {% if forloop.last %}
       </div>

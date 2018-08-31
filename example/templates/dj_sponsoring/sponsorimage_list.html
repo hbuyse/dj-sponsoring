@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
-{% block content %}
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsor.id %}">{{ sponsor }}</a></li>
+      <li class="breadcrumb-item active">Images list</li>
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title %}
+  {{ sponsor }}'s images
+{% endblock %}
+
+{% block page_title_buttons %}
   <div class="btn-group float-right" role="group">
     <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}" class="btn btn-primary btn-sm">Add image</a>
   </div>
+{% endblock %}
 
-  <h1>{{ sponsor.name }}'s images</h1>
-
-  {% for image in images %}
+{% block content %}
+  {% for image in sponsorimage_list %}
     {% ifchanged image.sponsor %}
       {% if not forloop.first %}
         </div>
@@ -32,7 +46,7 @@
       </div>
     {% endif %}
   {% empty %}
-  <p>No images linked to this sponsor...</p>
-  <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}">here</a></p>
+    <p>No images linked to this sponsor...</p>
+    <p>You can create one <a href="{% url 'dj-sponsoring:sponsor-image-create' sponsor.id %}">here</a></p>
   {% endfor %}
 {% endblock %}
