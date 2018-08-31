@@ -1,11 +1,35 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
+{% block path %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
+      {% if 'create' in request.path %}
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsor.id %}">{{ sponsor }}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-images-list' sponsor.id %}">Images list</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Creation</a></li>
+      {% elif 'update' in request.path %}
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsorimage.sponsor.id %}">{{ sponsorimage.sponsor }}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-images-list' sponsorimage.sponsor.id %}">Images list</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update {{ sponsorimage.name }}</a></li>
+      {% endif %}
+    </ol>
+  </nav>
+{% endblock %}
+
+{% block page_title %}
+  {% if 'create' in request.path %}
+    Sponsor's image creation
+  {% elif 'update' in request.path %}
+    Update sponsor image '{{ sponsorimage.name }}'
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form layout="horizontal" %}
-    {{ form.media }}
     {% bootstrap_button "Save" button_type="submit" button_class="btn-primary btn-sm" %}
   </form>
 {% endblock %}

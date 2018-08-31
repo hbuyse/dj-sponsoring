@@ -5,11 +5,13 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsors-list' %}">Sponsors list</a></li>
-      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsorfile.sponsor.id %}">{{ sponsorfile.sponsor }}</a></li>
-      <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-files-list' sponsorfile.id %}">Files list</a></li>
       {% if 'create' in request.path %}
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsor.id %}">{{ sponsor }}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-files-list' sponsor.id %}">Files list</a></li>
         <li class="breadcrumb-item active" aria-current="page">Creation</a></li>
       {% elif 'update' in request.path %}
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-detail' sponsorfile.sponsor.id %}">{{ sponsorfile.sponsor }}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dj_sponsoring:sponsor-files-list' sponsorfile.sponsor.id %}">Files list</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update {{ sponsorfile.name }}</a></li>
       {% endif %}
     </ol>
@@ -28,7 +30,6 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form layout="horizontal" %}
-    {{ form.media }}
     {% bootstrap_button "Save" button_type="submit" button_class="btn-primary btn-sm" %}
   </form>
 {% endblock %}
