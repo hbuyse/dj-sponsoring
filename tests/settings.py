@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     'django.contrib.sessions',
     "django.contrib.sites",
-    'markdownx',
     "dj_sponsoring",
 ]
 

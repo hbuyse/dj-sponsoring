@@ -23,8 +23,8 @@ from django.urls import path
 urlpatterns = [
     path('login', auth_views.login, name="login"),
     path('logout', auth_views.logout, name="logout"),
-    path('', include('dj_sponsoring.urls', namespace='dj-sponsoring')),
     path('admin/', admin.site.urls, name='admin'),
+    path('', include('dj_sponsoring.urls', namespace='dj-sponsoring')),
     path('markdownx/', include('markdownx.urls')),
 ]
 
